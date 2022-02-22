@@ -90,13 +90,13 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 
 ## Todo
 
-[x] Add support for displaying pokemon with names instead of national dex id's.
+* [x] Add support for displaying pokemon with names instead of national dex id's.
 
-[ ] Add uninstall script.
+* [ ] Add uninstall script.
 
-[ ] Add simple animations to small sprites.
+* [ ] Add simple animations to small sprites.
 
-[ ] Add support for selecting random pokemon and random pokemon from specific generations.
+* [ ] Add support for selecting random pokemon and random pokemon from specific generations.
 
 ## Known issues
 
