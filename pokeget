@@ -20,7 +20,6 @@ shiny=false        # The default shiny value.
 back=false         # The default back value.
 debug=false        # The default debug value.
 variant=""         # The default variant value.
-getFromNames=false # The default getFromNames value.
 
 # Make config file.
 
@@ -81,7 +80,6 @@ for var in "$@"; do
       variantAsk=false
     elif [ "$var" == "random" ]; then
       rawid=$((RANDOM % 807 + 0))
-      getFromNames=false
     else
       rawid=$var
     fi
@@ -121,14 +119,17 @@ elif [ "$1" == "update" ]; then
   bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/install.sh)
 
 else
+  # Check if the input is a national dex ID or a pokemon name.
 
   if [[ $rawid =~ ^[0-9]+$ ]]; then
-    idIsNumber=true
+    isPkmnName=false
   else
-    idIsNumber=false
+    isPkmnName=true
   fi
 
-  if [ $idIsNumber == true ]; then
+  # Parse the ID/Name
+
+  if [ $isPkmnName == false ]; then
     id=$rawid
     length=${#id}
 
@@ -139,6 +140,9 @@ else
   else
     id=$(echo "$rawid" | tr '[:upper:]' '[:lower:]')
   fi
+
+  # Apply values from flags & config file
+
   if [ $small == true ]; then
     size="small"
     shiny=false
@@ -155,8 +159,8 @@ else
     id="${id}_${variant}"
   fi
 
-
-  if [ $idIsNumber == true ]; then
+  # Put together URL based on wether the input is an ID or a Name.
+  if [ $isPkmnName == false ]; then
     url="https://raw.githubusercontent.com/talwat/pokeget/main/pokemon/${size}/${id}.txt"
   else
     url="https://raw.githubusercontent.com/talwat/pokeget/main/pokemon_named/${size}/${id}.txt"
