@@ -79,13 +79,24 @@ To install pokeget, you might need wget if you don't clone the repository and in
 
 All dependencies are usually installed by default on most Linux distros, as this script is designed to run on GNU/Linux.
 
+## Contributors
+
+* [Talwat](https://github.com/talwat) Lead maintainer and creator of pokeget.
+
+* [LoganWalls](https://github.com/LoganWalls) Made a script to scrape a list of pokemon.
+This helped a lot to be able to get pokemon with sprites instead of national dex id's.
+
+* [acxz](https://github.com/acxz) Suggesting feature parity with [pokemon colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts).
+
 ## Todo
 
-[] Add support for displaying pokemon with names instead of national dex id's.
+[x] Add support for displaying pokemon with names instead of national dex id's.
 
-[] Add uninstall script.
+[ ] Add uninstall script.
 
-[] Add simple animations to small sprites.
+[ ] Add simple animations to small sprites.
+
+[ ] Add support for selecting random pokemon and random pokemon from specific generations.
 
 ## Known issues
 
