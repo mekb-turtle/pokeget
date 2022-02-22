@@ -18,6 +18,10 @@ Displays a help menu containing information about flags and Special commands.
 
 Automatically runs the update script to update pokeget.
 
+### random
+
+This will pick a random pokemon to display. This also will work with other flags like -shiny.
+
 ## Flags
 
 ### -small

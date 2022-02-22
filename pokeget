@@ -15,12 +15,12 @@ RESET="\x1B[0m"
 
 # Configurable
 
-small=false     # The default size value.
-shiny=false     # The default shiny value.
-back=false      # The default back value.
-debug=false     # The default debug value.
-variant=""      # The default variant value.
-getFromNames=false
+small=false        # The default size value.
+shiny=false        # The default shiny value.
+back=false         # The default back value.
+debug=false        # The default debug value.
+variant=""         # The default variant value.
+getFromNames=false # The default getFromNames value.
 
 # Make config file.
 
@@ -45,6 +45,7 @@ variant=\"\"
 getFromNames=false
 " >"$HOME/.config/pokeget/pokeget.conf"
 fi
+
 source "$HOME/.config/pokeget/pokeget.conf"
 
 # Non-configurable variables
@@ -82,6 +83,9 @@ for var in "$@"; do
     if [ $variantAsk == true ]; then
       variant="${var}"
       variantAsk=false
+    elif [ "$var" == "random" ]; then
+      rawid=$((RANDOM % 807 + 0))
+      getFromNames=false
     else
       rawid=$var
     fi
@@ -156,14 +160,14 @@ else
   if [ $debug == true ]; then
     echo -e "${YELLOW}[!]${RESET} $url"
   fi
-fi
 
-# Print output or 404 message
+  # Print output or 404 message
 
-if [[ $r == *"404"* ]]; then
-  echo -e "${RED}[!]${RESET} Pokemon could not be found (404 Error)$RESET"
-  exit 1
-else
-  echo -e "$r$RESET"
-  exit 0
+  if [[ $r == *"404"* ]]; then
+    echo -e "${RED}[!]${RESET} Pokemon could not be found (404 Error)$RESET"
+    exit 1
+  else
+    echo -e "$r$RESET"
+    exit 0
+  fi
 fi
