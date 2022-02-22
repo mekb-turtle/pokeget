@@ -73,9 +73,9 @@ If you want a list of flags, you can look at [USAGE.md](USAGE.md).
 
 ## Dependencies
 
-To run pokeget you will need bash and unzip.
+To run pokeget you will need is bash and cURL.
 
-To install pokeget, you might need wget if you don't clone the repository and instead use the install instructions.
+To install pokeget, you will need cURL if you don't clone the repository and instead use the install instructions.
 
 All dependencies are usually installed by default on most Linux distros, as this script is designed to run on GNU/Linux.
 

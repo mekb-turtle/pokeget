@@ -20,7 +20,6 @@ shiny=false     # The default shiny value.
 back=false      # The default back value.
 debug=false     # The default debug value.
 variant=""      # The default variant value.
-pokemon_path="" # The path to a pokemon.zip file, leave blank for getting sprites off the internet. (Eg. $HOME/Documents/pokemon.zip)
 getFromNames=false
 
 # Make config file.
@@ -40,10 +39,6 @@ back=false
 
 # The variant of the sprite. Determines megas, pokemon specific things like arceus, alolan forms, etc...
 variant=\"\"
-
-# The path to the pokemon.zip file. Eg: /home/user/Documents/pokemon.zip
-# The '~' shortcut is not supported, it must be a full path.
-pokemon_path=\"\"
 
 # EXPERIMENTAL
 # Wether to use to use pokemon names instead of national dex id's
@@ -126,14 +121,16 @@ elif [ "$1" == "update" ]; then
   bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/install.sh)
 
 else
-  id=$rawid
   if [ $getFromNames == false ]; then
+    id=$rawid
     length=${#id}
 
     while ((length < 3)); do
       id=0$id
       length=${#id}
     done
+  else
+    id=$(echo "$rawid" | tr '[:upper:]' '[:lower:]')
   fi
   if [ $small == true ]; then
     size="small"
@@ -150,18 +147,14 @@ else
   if [ "$variant" != "" ]; then
     id="${id}_${variant}"
   fi
-  if [ "$pokemon_path" == "" ]; then
-    if [ $getFromNames == false ]; then
-      url="https://raw.githubusercontent.com/talwat/pokeget/main/pokemon/${size}/${id}.txt"
-    else
-      url="https://raw.githubusercontent.com/talwat/pokeget/main/pokemon_named/${size}/${id}.txt"
-    fi
-    r=$(curl -s -L "${url}")
-    if [ $debug == true ]; then
-      echo -e "${YELLOW}[!]${RESET} $url"
-    fi
+  if [ $getFromNames == false ]; then
+    url="https://raw.githubusercontent.com/talwat/pokeget/main/pokemon/${size}/${id}.txt"
   else
-    r=$(unzip -p "${pokemon_path}" ${size}/"${id}".txt)
+    url="https://raw.githubusercontent.com/talwat/pokeget/main/pokemon_named/${size}/${id}.txt"
+  fi
+  r=$(curl -s -L "${url}")
+  if [ $debug == true ]; then
+    echo -e "${YELLOW}[!]${RESET} $url"
   fi
 fi
 

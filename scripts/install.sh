@@ -56,7 +56,7 @@ if [[ $USER != "root" ]]; then
   fi
 
   echo -e "${CYAN}[!]${RESET} Downloading pokeget..."
-  wget -q https://raw.githubusercontent.com/talwat/pokeget/main/pokeget
+  curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output pokeget
   echo -e "${GREEN}[!]${RESET} Downloaded pokeget."
 
   echo -e "${CYAN}[!]${RESET} Marking pokeget as executable..."
