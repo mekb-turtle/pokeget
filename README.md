@@ -79,6 +79,14 @@ To install pokeget, you might need wget if you don't clone the repository and in
 
 All dependencies are usually installed by default on most Linux distros, as this script is designed to run on GNU/Linux.
 
+## Todo
+
+[] Add support for displaying pokemon with names instead of national dex id's.
+
+[] Add uninstall script.
+
+[] Add simple animations to small sprites.
+
 ## Known issues
 
 During testing, some of the unicode symbols have displayed incorrectly, this is still being worked on.
