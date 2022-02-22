@@ -125,7 +125,14 @@ elif [ "$1" == "update" ]; then
   bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/install.sh)
 
 else
-  if [ $getFromNames == false ]; then
+
+  if [[ $rawid =~ ^[0-9]+$ ]]; then
+    idIsNumber=true
+  else
+    idIsNumber=false
+  fi
+
+  if [ $idIsNumber == true ]; then
     id=$rawid
     length=${#id}
 
@@ -151,7 +158,9 @@ else
   if [ "$variant" != "" ]; then
     id="${id}_${variant}"
   fi
-  if [ $getFromNames == false ]; then
+
+
+  if [ $idIsNumber == true ]; then
     url="https://raw.githubusercontent.com/talwat/pokeget/main/pokemon/${size}/${id}.txt"
   else
     url="https://raw.githubusercontent.com/talwat/pokeget/main/pokemon_named/${size}/${id}.txt"
