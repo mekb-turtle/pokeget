@@ -54,10 +54,3 @@ Also, the format of this flag is `-variant <number>`, so keep that in mind.
 Pokeget generates a config file at `~/.config/pokeget/`.
 
 This config file has options that allow you to change defaults.
-
-You can also set `getFromNames` to true in order to be able to get pokemon using words instead of national dex ids.
-This is still **experimental** however, so be warned.
-
-### getFromNames
-
-The only other thing that you should be aware of when enabling this, is that instead of spaces you put `_` and `'` have been removed from the names of pokemon such as farfetch'd.

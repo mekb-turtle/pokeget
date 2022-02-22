@@ -20,7 +20,6 @@ shiny=false        # The default shiny value.
 back=false         # The default back value.
 debug=false        # The default debug value.
 variant=""         # The default variant value.
-getFromNames=false # The default getFromNames value.
 
 # Make config file.
 
@@ -39,10 +38,6 @@ back=false
 
 # The variant of the sprite. Determines megas, pokemon specific things like arceus, alolan forms, etc...
 variant=\"\"
-
-# EXPERIMENTAL
-# Wether to use to use pokemon names instead of national dex id's
-getFromNames=false
 " >"$HOME/.config/pokeget/pokeget.conf"
 fi
 
@@ -85,7 +80,6 @@ for var in "$@"; do
       variantAsk=false
     elif [ "$var" == "random" ]; then
       rawid=$((RANDOM % 807 + 0))
-      getFromNames=false
     else
       rawid=$var
     fi
@@ -125,7 +119,17 @@ elif [ "$1" == "update" ]; then
   bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/install.sh)
 
 else
-  if [ $getFromNames == false ]; then
+  # Check if the input is a national dex ID or a pokemon name.
+
+  if [[ $rawid =~ ^[0-9]+$ ]]; then
+    isPkmnName=false
+  else
+    isPkmnName=true
+  fi
+
+  # Parse the ID/Name
+
+  if [ $isPkmnName == false ]; then
     id=$rawid
     length=${#id}
 
@@ -136,6 +140,9 @@ else
   else
     id=$(echo "$rawid" | tr '[:upper:]' '[:lower:]')
   fi
+
+  # Apply values from flags & config file
+
   if [ $small == true ]; then
     size="small"
     shiny=false
@@ -151,7 +158,9 @@ else
   if [ "$variant" != "" ]; then
     id="${id}_${variant}"
   fi
-  if [ $getFromNames == false ]; then
+
+  # Put together URL based on wether the input is an ID or a Name.
+  if [ $isPkmnName == false ]; then
     url="https://raw.githubusercontent.com/talwat/pokeget/main/pokemon/${size}/${id}.txt"
   else
     url="https://raw.githubusercontent.com/talwat/pokeget/main/pokemon_named/${size}/${id}.txt"
