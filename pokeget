@@ -75,7 +75,7 @@ for var in "$@"; do
     debug=true
     ;;
   -*)
-    echo "${RED}[!]${RESET} Invalid flag"
+    echo -e "${RED}[!]${RESET} Invalid flag"
     exit
     ;;
   *)
