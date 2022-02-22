@@ -39,10 +39,6 @@ back=false
 
 # The variant of the sprite. Determines megas, pokemon specific things like arceus, alolan forms, etc...
 variant=\"\"
-
-# EXPERIMENTAL
-# Wether to use to use pokemon names instead of national dex id's
-getFromNames=false
 " >"$HOME/.config/pokeget/pokeget.conf"
 fi
 
