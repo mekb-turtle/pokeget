@@ -36,11 +36,19 @@ Makes the pokemon a big sprite. In the pokemon games, this would be the sprite f
 
 Makes the pokemon the back sprite. in the pokemon games, this would be the sprite found of your pokemon while battling. Only works on big sprites.
 
+### -front
+
+Makes the pokemon the front sprite. in the pokemon games, this would be the sprite found of your opponents pokemon while battling. Only works on big sprites.
+
 ### -shiny
 
 Dictates wether the pokemon is shiny. It only works on big sprites.
 
 *Note: the shiny colors are from pokemon reborn, so a lot of them are completely different than the normal shiny colors.*
+
+### -notshiny
+
+Makes the pokemon not shiny.
 
 ### -variant \<num>
 
