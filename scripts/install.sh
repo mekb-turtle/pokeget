@@ -71,7 +71,7 @@ if [ "$USER" != "root" ]; then
 # System Install/Update
 
 else
-  if [ -f "usr/bin/pokeget" ]; then
+  if [ -f "/usr/bin/pokeget" ]; then
     echo -e "${ORANGE}[!]${RESET} Selecting ${BOLD}system wide${RESET} ${BOLD}update${RESET}."
   else
     echo -e "${ORANGE}[!]${RESET} Selecting ${BOLD}system wide${RESET} ${BOLD}installation${RESET}."
