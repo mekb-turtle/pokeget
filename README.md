@@ -47,6 +47,14 @@ If these do not work, pokeget is not found after doing a user installation, or w
 sudo curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output /usr/bin/pokeget
 ```
 
+## Arch Linux
+
+On Arch Linux, you can install it from AUR:
+
+``` bash
+paru -S pokeget-git
+```
+
 ## Uninstallation
 
 Currently there is no uninstall script, however to remove pokeget simply do:
