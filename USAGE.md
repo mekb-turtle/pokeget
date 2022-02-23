@@ -16,7 +16,11 @@ Displays a help menu containing information about flags and Special commands.
 
 ### update
 
-Automatically runs the update script to update pokeget.
+Automatically runs the update script to update pokeget. Use sudo if you did a system wide install.
+
+### uninstall
+
+This will run the uninstall script to remove pokeget. Use sudo if you did a system wide install.
 
 ### random
 

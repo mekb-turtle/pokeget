@@ -102,6 +102,7 @@ elif [ "$1" == "help" ]; then
   echo "Commands"
   echo "  help: Displays this menu."
   echo "  update: Updates pokeget."
+  echo "  uninstall: Uninstalls pokeget."
   echo "Flags"
   echo "  -small: Makes the pokemon a smaller sprite. in the pokemon games, this would be the sprite found when browsing the pokemon storage system."
   echo "  -big: Makes the pokemon a big sprite. in the pokemon games, this would be the sprite found of your opponents pokemon while battling."
@@ -117,6 +118,9 @@ elif [ "$1" == "help" ]; then
 
 elif [ "$1" == "update" ]; then
   bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/install.sh)
+
+elif [ "$1" == "uninstall" ]; then
+  bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/uninstall.sh)
 
 else
   # Check if the input is a national dex ID or a pokemon name.

@@ -92,11 +92,13 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 
 * [x] Add support for displaying pokemon with names instead of national dex id's.
 
-* [ ] Add uninstall script.
+* [x] Add uninstall script.
 
 * [ ] Add simple animations to small sprites.
 
 * [ ] Add support for selecting random pokemon and random pokemon from specific generations.
+
+* [ ] Add support for getting small sprites from bulbapedia.
 
 ## Known issues
 

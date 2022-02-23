@@ -36,13 +36,13 @@ cd "/tmp" || exit
 
 # User Install/Update
 
-if [[ $USER != "root" ]]; then
+if [ "$USER" != "root" ]; then
   if [ -f "$HOME/.local/bin/pokeget" ]; then
     echo -e "${CYAN}[?]${RESET} Would you like to reset your config file to the newest one? [y/n]"
     echo -e "${ORANGE}[!]${RESET} This will reveal new features but you will have to reconfigure pokeget. This will reveal new features but you will have to reconfigure pokeget."
+    
     yesOrNo
-
-    if [[ $? == 1 ]]; then
+    if [ $? == 1 ]; then
       rm -rf "$HOME/.config/pokeget"
       echo -e "${GREEN}[!]${RESET} Removed config file."
     fi
