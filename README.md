@@ -7,6 +7,9 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/talwat/pokeget)
 ![GitHub contributors](https://img.shields.io/github/contributors/talwat/pokeget)
 ![GitHub watchers](https://img.shields.io/github/watchers/talwat/pokeget)
+[![GitHub forks](https://img.shields.io/github/forks/talwat/pokeget)](https://github.com/talwat/pokeget/network)
+[![GitHub issues](https://img.shields.io/github/issues/talwat/pokeget)](https://github.com/talwat/pokeget/issues)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/talwat/pokeget)
 
 Pokeget is a bash script you can use to display cool sprites of pokemon in your terminal.
 
@@ -94,7 +97,7 @@ All dependencies are usually installed by default on most Linux distros, as this
 * [LoganWalls](https://github.com/LoganWalls) Made a script to scrape a list of pokemon.
 This helped a lot to be able to get pokemon with sprites instead of national dex id's.
 
-* [acxz](https://github.com/acxz) Suggesting feature parity with [pokemon colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts).
+* [acxz](https://github.com/acxz) Fixing a small spacing issue, and making feature requests.
 
 ## Todo
 
@@ -106,7 +109,11 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 
 * [x] Add support for selecting random pokemon and random pokemon from specific generations.
 
-* [ ] Add support for getting small sprites from bulbapedia.
+* [ ] Add support for getting small sprites from [pokemondb](https://pokemondb.net).
+
+* [ ] Add support for multiple pokemon at once side by side.
+
+* [ ] Add support for getting sprites from [PokeAPI](https://github.com/PokeAPI)
 
 ## Known issues
 
