@@ -118,7 +118,7 @@ elif [ "$1" == "help" ]; then
   echo -e "  ${BOLD}-small:${RESET}         Makes the pokemon a smaller sprite. in the pokemon games, this would be the sprite found when browsing the pokemon storage system."
   echo -e "  ${BOLD}-big:${RESET}           Makes the pokemon a big sprite. in the pokemon games, this would be the sprite found of your opponents pokemon while battling."
   echo -e "  ${BOLD}-back:${RESET}          Makes the pokemon the back sprite. in the pokemon games, this would be the sprite found of your pokemon while battling. Only works on big sprites."
-  echo -e "  ${BOLD}-back:${RESET}          Makes the pokemon the front sprite. in the pokemon games, this would be the sprite found of your opponents pokemon while battling. Only works on big sprites."
+  echo -e "  ${BOLD}-front:${RESET}          Makes the pokemon the front sprite. in the pokemon games, this would be the sprite found of your opponents pokemon while battling. Only works on big sprites."
   echo -e "  ${BOLD}-shiny:${RESET}         Dictates wether the pokemon is shiny, only works on big sprites. (NOTE: the shiny colors are from pokemon reborn, so a lot of them are completely different than the normal shiny colors.)"
   echo -e "  ${BOLD}-notshiny:${RESET}      Makes the pokemon not shiny."
   echo -e "  ${BOLD}-variant <num>:${RESET} This flag dictates the following things: wether the pokemon is mega, alolan form, pokemon specific things such as arceus, and a few other things."
@@ -143,7 +143,7 @@ else
 
     # TODO: Implement a better way of doing this.
     case $randomGen in
-      
+
       # All Gens
       0)
         rawid=$(shuf -i 0-807 -n 1)
