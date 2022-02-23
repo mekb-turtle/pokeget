@@ -61,8 +61,14 @@ for var in "$@"; do
   -shiny)
     shiny=true
     ;;
+  -notshiny)
+    shiny=false
+    ;;
   -back)
     back=true
+    ;;
+  -front)
+    back=false
     ;;
   -variant)
     variantAsk=true
@@ -96,21 +102,22 @@ if [ "$1" == "" ]; then
 # Help Command
 
 elif [ "$1" == "help" ]; then
-  echo "pokeget [flags] <pokemon national dex id>"
-  echo "PS: This program requires internet to work."
+  echo -e "${BOLD}pokeget${RESET} [flags] <pokemon ID/pokemon name>"
+  echo -e "${BOLD}PS${RESET}: This program requires internet to work."
   echo ""
-  echo "Commands"
-  echo "  help: Displays this menu."
-  echo "  update: Updates pokeget."
-  echo "  uninstall: Uninstalls pokeget."
-  echo "Flags"
-  echo "  -small: Makes the pokemon a smaller sprite. in the pokemon games, this would be the sprite found when browsing the pokemon storage system."
-  echo "  -big: Makes the pokemon a big sprite. in the pokemon games, this would be the sprite found of your opponents pokemon while battling."
-  echo "  -back: Makes the pokemon the back sprite. in the pokemon games, this would be the sprite found of your pokemon while battling. Only works on big sprites."
-  echo "  -shiny: Dictates wether the pokemon is shiny, only works on big sprites. (NOTE: the shiny colors are from pokemon reborn, so a lot of them are completely different than the normal shiny colors.)"
-  echo "  -variant: This flag dictates the following things: wether the pokemon is mega, alolan form, pokemon specific things such as arceus, and a few other things."
-  echo "     Also, the format of this flag is -variant <number>, so keep that in mind."
-  echo "credits"
+  echo -e "${BOLD}${CYAN}Commands${RESET}"
+  echo -e "  ${BOLD}help:${RESET}           Displays this menu."
+  echo -e "  ${BOLD}update:${RESET}         Updates pokeget."
+  echo -e "  ${BOLD}uninstall:${RESET}      Uninstalls pokeget."
+  echo -e "${BOLD}${CYAN}Flags${RESET}"
+  echo -e "  ${BOLD}-small:${RESET}         Makes the pokemon a smaller sprite. in the pokemon games, this would be the sprite found when browsing the pokemon storage system."
+  echo -e "  ${BOLD}-big:${RESET}           Makes the pokemon a big sprite. in the pokemon games, this would be the sprite found of your opponents pokemon while battling."
+  echo -e "  ${BOLD}-back:${RESET}          Makes the pokemon the back sprite. in the pokemon games, this would be the sprite found of your pokemon while battling. Only works on big sprites."
+  echo -e "  ${BOLD}-back:${RESET}          Makes the pokemon the front sprite. in the pokemon games, this would be the sprite found of your opponents pokemon while battling. Only works on big sprites."
+  echo -e "  ${BOLD}-shiny:${RESET}         Dictates wether the pokemon is shiny, only works on big sprites. (NOTE: the shiny colors are from pokemon reborn, so a lot of them are completely different than the normal shiny colors.)"
+  echo -e "  ${BOLD}-notshiny:${RESET}      Makes the pokemon not shiny."
+  echo -e "  ${BOLD}-variant <num>:${RESET} This flag dictates the following things: wether the pokemon is mega, alolan form, pokemon specific things such as arceus, and a few other things."
+  echo -e "${BOLD}${CYAN}Credits${RESET}"
   echo "  Pokeget now gets its sprites from Pokemon Reborn, which is why there may be some pokemon that look different."
   echo "  All sprites and art are originally made by gamefreak, so huge props to them."
   echo "  Code written by Talwat in bash."
