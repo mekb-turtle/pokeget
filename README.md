@@ -98,7 +98,7 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 
 * [ ] Add simple animations to small sprites.
 
-* [ ] Add support for selecting random pokemon and random pokemon from specific generations.
+* [x] Add support for selecting random pokemon and random pokemon from specific generations.
 
 * [ ] Add support for getting small sprites from bulbapedia.
 

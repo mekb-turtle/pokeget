@@ -22,10 +22,6 @@ Automatically runs the update script to update pokeget. Use sudo if you did a sy
 
 This will run the uninstall script to remove pokeget. Use sudo if you did a system wide install.
 
-### random
-
-This will pick a random pokemon to display. This also will work with other flags like -shiny.
-
 ## Flags
 
 ### -small
@@ -46,12 +42,14 @@ Dictates wether the pokemon is shiny. It only works on big sprites.
 
 *Note: the shiny colors are from pokemon reborn, so a lot of them are completely different than the normal shiny colors.*
 
-### -variant
+### -variant \<num>
 
 This flag dictates a lot of things, such as:
 Wether the pokemon is mega, alolan form, pokemon specific things such as arceus, and a few other attributes.
 
-Also, the format of this flag is `-variant <number>`, so keep that in mind.
+### -random \<gen>
+
+This flag makes a random pokemon. You can specify what generation the random pokemon will be in, or if you put `0` it will pick a random pokemon from any generation.
 
 ## Config file
 
