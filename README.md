@@ -38,6 +38,12 @@ sudo bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/script
 
 When updating, make sure you do the same command you did when installing to avoid having multiple copies of pokeget.
 
+If these do not work, pokeget is not found after doing a user installation, or when doing a system wide installation you get some error, then do:
+
+```bash
+sudo curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output /usr/bin/pokeget
+```
+
 ## Uninstallation
 
 Currently there is no uninstall script, however to remove pokeget simply do:
