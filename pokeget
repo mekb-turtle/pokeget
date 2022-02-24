@@ -47,13 +47,15 @@ getVanilla=false
 " >"$HOME/.config/pokeget/pokeget.conf"
 fi
 
+# Import config file
+
 source "$HOME/.config/pokeget/pokeget.conf"
 
 # Non-configurable variables
 
 variantAsk=false
 randomAsk=false
-rawid=0
+rawId=0
 
 # Get Flags & Input
 
@@ -91,13 +93,21 @@ for var in "$@"; do
     exit
     ;;
   *)
+
+    # Check if the variant flag has been called to set the variant value
+
     if [ $variantAsk == true ]; then
       variant="$var"
       variantAsk=false
+    
+    # Check if the random flag has been called to set the random value
+
     elif [ $randomAsk == true ]; then
       randomGen="$var"
+    
+    # If no flags which require another value have been called, set the raw ID
     else
-      rawid=$var
+      rawId=$var
     fi
     ;;
   esac
@@ -155,55 +165,55 @@ else
 
   if [ "$randomGen" != "" ]; then
 
-    # TODO: Implement a better way of doing this.
+    # TODO: Implement a better way of doing this
 
     case $randomGen in
 
       # All Gens
       0)
-        rawid=$(shuf -i 0-807 -n 1)
+        rawId=$(shuf -i 0-807 -n 1)
         ;;
 
       # Gen 1
       1)
-        rawid=$(shuf -i 0-151 -n 1)
+        rawId=$(shuf -i 0-151 -n 1)
         ;;
 
       # Gen 2
       2)
-        rawid=$(shuf -i 152-251 -n 1)
+        rawId=$(shuf -i 152-251 -n 1)
         ;;
 
       # Gen 3
       3)
-        rawid=$(shuf -i 252-386 -n 1)
+        rawId=$(shuf -i 252-386 -n 1)
         ;;
 
       # Gen 4
       4)
-        rawid=$(shuf -i 387-493 -n 1)
+        rawId=$(shuf -i 387-493 -n 1)
         ;;
 
       # Gen 5
       5)
-        rawid=$(shuf -i 494-649 -n 1)
+        rawId=$(shuf -i 494-649 -n 1)
         ;;
 
       # Gen 6
       6)
-        rawid=$(shuf -i 650-721 -n 1)
+        rawId=$(shuf -i 650-721 -n 1)
         ;;
 
       # Gen 7
       7)
-        rawid=$(shuf -i 722-807 -n 1)
+        rawId=$(shuf -i 722-807 -n 1)
         ;;
     esac
   fi
 
-  # Check if the input is a national dex ID or a pokemon name.
+  # Check if the input is a national dex ID or a pokemon name
 
-  if [[ $rawid =~ ^[0-9]+$ ]]; then
+  if [[ $rawId =~ ^[0-9]+$ ]]; then
     isPkmnName=false
   else
     isPkmnName=true
@@ -212,7 +222,7 @@ else
   # Parse the ID/Name
 
   if [ $isPkmnName == false ]; then
-    id=$rawid
+    id=$rawId
     length=${#id}
 
     # Loop until the pokemon ID's length is three. This makes '3' '003', '25' '025', etc...
@@ -222,14 +232,16 @@ else
       length=${#id}
     done
   else
-    id=$(echo "$rawid" | tr '[:upper:]' '[:lower:]')
+    id=$(echo "$rawId" | tr '[:upper:]' '[:lower:]')
   fi
 
-  # Apply values from flags & config file
+  # Apply values from flags & config file.
 
   if [ $small == true ]; then
     size="small"
     shiny=false
+  
+  # Apply other flags if the small option is false. This is because small sprites don't have back sprites and shiny sprites
   else
     size="big"
     if [ $shiny == true ]; then
@@ -256,6 +268,8 @@ else
   if [ $isPkmnName == true ]; then
     folderName="${folderName}_named"
   fi
+
+  # Put together the final URL
 
   url="https://raw.githubusercontent.com/talwat/pokeget/main/${folderName}/${size}/${id}.txt"
 
