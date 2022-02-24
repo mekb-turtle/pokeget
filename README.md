@@ -59,17 +59,16 @@ paru -S pokeget-git
 
 ## Uninstallation
 
-Currently there is no uninstall script, however to remove pokeget simply do:
+You can use the uninstall script by doing:
 
 ```bash
-rm ~/.local/bin/pokeget
-rm -rf ~/.config/pokeget
+bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/uninstall.sh)
 ```
 
 in your shell to remove a local installation, and to remove a system wide installation do:
 
 ```bash
-sudo rm -rf /usr/bin/pokeget
+sudo bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/uninstall.sh)
 ```
 
 *Keep in mind if you did a **system wide installation** all users who used pokeget will have to delete their pokeget config files manually*
@@ -117,13 +116,13 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 
 * [x] Add uninstall script.
 
-* [ ] Add simple animations to small sprites.
+* ~~[ ] Add simple animations to small sprites.~~
 
 * [x] Add support for selecting random pokemon and random pokemon from specific generations.
 
 * [ ] Add support for multiple pokemon at once side by side.
 
-* [ ] Add support for getting sprites from [PokeAPI](https://github.com/PokeAPI)
+* [x] Add support for getting sprites from [PokeAPI](https://github.com/PokeAPI)
 
 ## Known issues
 
