@@ -5,7 +5,7 @@
 
 # Color variables
 
-#GREEN="\x1B[32m"
+GREEN="\x1B[32m"
 YELLOW="\x1B[33m"
 #ORANGE="\e[33m"
 CYAN="\x1B[36m"
