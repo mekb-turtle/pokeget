@@ -116,8 +116,6 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 
 * [x] Add uninstall script.
 
-* ~~[ ] Add simple animations to small sprites.~~
-
 * [x] Add support for selecting random pokemon and random pokemon from specific generations.
 
 * [ ] Add support for multiple pokemon at once side by side.
