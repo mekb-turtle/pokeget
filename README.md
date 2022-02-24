@@ -28,8 +28,9 @@ Scripts used to convert, trim, crop, scrape, etc... are in `scripts/dev`, but ar
 
 ## Installation
 
-*Note: the install commands should be exactly the same for updating, and repairing pokeget.*
-You can install pokeget by running the install script:
+*Note: the install commands should be exactly the same for **updating**, and **repairing** pokeget.*
+
+You can install pokeget by running these install commands:
 
 ```bash
 curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output ~/.local/bin/pokeget
