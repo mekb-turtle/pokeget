@@ -32,22 +32,20 @@ Scripts used to convert, trim, crop, scrape, etc... are in `scripts/dev`, but ar
 You can install pokeget by running the install script:
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/install.sh)
+curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output ~/.local/bin/pokeget
+chmod +x ~/.local/bin/pokeget
 ```
 
 Which will preform a local installation, or to install for all users do:
 
 ```bash
-sudo bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/install.sh)
+sudo curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output /usr/bin/pokeget
+sudo chmod +x /usr/bin/pokeget
 ```
 
 When updating, make sure you do the same command you did when installing to avoid having multiple copies of pokeget.
 
-If these do not work, pokeget is not found after doing a user installation, or when doing a system wide installation you get some error, then do:
-
-```bash
-sudo curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output /usr/bin/pokeget
-```
+If pokeget is not found after doing a user installation, then do a system wide installation.
 
 ## Arch Linux
 

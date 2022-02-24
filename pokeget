@@ -135,7 +135,16 @@ elif [ "$1" == "help" ]; then
   exit 0
 
 elif [ "$1" == "update" ]; then
-  bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/install.sh)
+  if [ "$USER" != "root" ]; then
+    curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output ~/.local/bin/pokeget
+    chmod +x ~/.local/bin/pokeget
+    echo -e "${GREEN}[!]${RESET} Updated pokeget."
+    exit 0
+  fi
+  curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output ~/usr/bin/pokeget
+  chmod +x ~/usr/bin/pokeget
+  echo -e "${GREEN}[!]${RESET} Updated pokeget."
+  
 
 elif [ "$1" == "uninstall" ]; then
   bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/uninstall.sh)
