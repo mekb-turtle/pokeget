@@ -19,6 +19,8 @@ Pokeget has support for all pokemon up to gen 8 *including gen 8* and is written
 
 Pokeget has only needs basic dependencies usually preinstalled in GNU/Linux systems.
 
+Scripts used to convert, trim, crop, scrape, etc... are in `scripts/dev`, but are very messy and shouldn't be used seriously.
+
 ## Examples
 
 ![pokeget](https://github.com/talwat/pokeget/raw/main/examples/small1.png)
@@ -76,7 +78,7 @@ The pokeget configuration files are located in `~/.config/pokeget` so keep that 
 
 ## Sources
 
-All sprites are taken from [Pokemon Reborn](https://www.rebornevo.com/) *(A pokemon fan game)*.
+Sprites are taken from [Pokemon Reborn](https://www.rebornevo.com/) *(A pokemon fan game)*, and vanilla sprites are taken from [PokeAPI](https://github.com/PokeAPI/sprites).
 
 However, the original sprites and character designs are made by Game Freak.
 
@@ -107,6 +109,8 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 
 * [acxz](https://github.com/acxz) Fixing a small spacing issue, and making feature requests.
 
+* [crstian19](https://github.com/crstian19) Submitted pokeget to the AUR *Arch User Repository*.
+
 ## Todo
 
 * [x] Add support for displaying pokemon with names instead of national dex id's.
@@ -116,8 +120,6 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 * [ ] Add simple animations to small sprites.
 
 * [x] Add support for selecting random pokemon and random pokemon from specific generations.
-
-* [ ] Add support for getting small sprites from [pokemondb](https://pokemondb.net).
 
 * [ ] Add support for multiple pokemon at once side by side.
 
