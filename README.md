@@ -131,14 +131,14 @@ It should also be able to run on macOS, however it has not been tested yet.
 
 ## Contributors
 
-* [Talwat](https://github.com/talwat) Lead maintainer and creator of pokeget.
+- [Talwat](https://github.com/talwat) Lead maintainer and creator of pokeget.
 
-* [LoganWalls](https://github.com/LoganWalls) Made a script to scrape a list of pokemon.
+- [LoganWalls](https://github.com/LoganWalls) Made a script to scrape a list of pokemon.
 This helped a lot to be able to get pokemon with sprites instead of national dex id's.
 
-* [acxz](https://github.com/acxz) Fixing a small spacing issue, and making feature requests.
+- [acxz](https://github.com/acxz) Fixing a small spacing issue, and making feature requests.
 
-* [crstian19](https://github.com/crstian19) Submitted pokeget to the AUR *Arch User Repository*.
+- [crstian19](https://github.com/crstian19) Submitted pokeget to the AUR *Arch User Repository*.
 
 ## FAQ
 
@@ -162,15 +162,15 @@ So if your
 
 ## Todo
 
-* [x] Add support for displaying pokemon with names instead of national dex id's.
+- [x] Add support for displaying pokemon with names instead of national dex id's.
 
-* [x] Add uninstall script.
+- [x] Add uninstall script.
 
-* [x] Add support for selecting random pokemon and random pokemon from specific generations.
+- [x] Add support for selecting random pokemon and random pokemon from specific generations.
 
-* [ ] Add support for multiple pokemon at once side by side.
+- [ ] Add support for multiple pokemon at once side by side.
 
-* [x] Add support for getting sprites from [PokeAPI](https://github.com/PokeAPI)
+- [x] Add support for getting sprites from [PokeAPI](https://github.com/PokeAPI)
 
 ## Known issues
 
