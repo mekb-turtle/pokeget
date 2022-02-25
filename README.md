@@ -158,7 +158,8 @@ Pokeget has already achieved feature parity with pokemon-colorscripts, and gener
 
 Pokemon-colorscripts is still a really cool program, but pokeget does fix some of its issues.
 
-So if your
+![pokeget](https://github.com/talwat/pokeget/raw/main/examples/pokeget-and-pokemon-colorscripts/pokeget-moltres.png)
+![pokeget](https://github.com/talwat/pokeget/raw/main/examples/pokeget-and-pokemon-colorscripts/pokemon-colorscripts-moltres.png)
 
 ## Todo
 
