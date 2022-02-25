@@ -110,6 +110,26 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 
 * [crstian19](https://github.com/crstian19) Submitted pokeget to the AUR *Arch User Repository*.
 
+## FAQ
+
+### Hey, isn't this similar to [pokemon-colorscripts?](https://gitlab.com/phoneybadger/pokemon-colorscripts/)
+
+Pokeget is not a clone of pokemon-colorscripts, nor was inspired by it in the first place.
+
+The true main difference is that pokemon-colorscripts gets its sprites from a folder stored locally while pokeget get's its sprites from the pokeget github repo.
+This allows pokeget's sprites to be renamed, fixed, redone, and tweaked without any update necessary from the user. Pokeget is very portable and has very few dependencies *just cURL and bash!*.
+
+When I googled about similar tools while I was developing the first version of pokeget I found pokemon-colorscripts and even used it as a source for a while.
+But I continued developing pokeget because I generally had some issues with it and I thought it could be improved,
+
+pokemon-colorscripts has issues with its sprites with some of them appearing blurry, as well as a lack of big sprites, shiny sprites, mega forms, variants, back sprites, and generally having less options. Additionally, pokemon-colorscripts hasn't been updated in 6 months *at the time of writing this*.
+
+Pokeget has already achieved feature parity with pokemon-colorscripts, and generally has more features.
+
+Pokemon-colorscripts is still a really cool program, but pokeget does fix some of its issues.
+
+So if your
+
 ## Todo
 
 * [x] Add support for displaying pokemon with names instead of national dex id's.
