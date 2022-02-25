@@ -34,6 +34,7 @@ Scripts used to convert, trim, crop, scrape, etc... are in `scripts/dev`, but ar
 You can install pokeget by running these install commands:
 
 ```bash
+mkdir -p ~/.local/bin
 curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output ~/.local/bin/pokeget
 chmod +x ~/.local/bin/pokeget
 ```
@@ -45,9 +46,13 @@ sudo curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --out
 sudo chmod +x /usr/bin/pokeget
 ```
 
+You can also clone the repository and then run the script from the directory you cloned it in, in which case you can run `git pull` to update it if you haven't moved the script to a different directory.
+
 When updating, make sure you do the same command you did when installing to avoid having multiple copies of pokeget.
 
-If pokeget is not found after doing a user installation, then do a system wide installation.
+If pokeget is not found after doing a user installation, then do a system wide installation, because this usually means `~/.local/bin` is not added to PATH.
+
+If you want to add `~/.local/bin` to PATH append `export PATH="$HOME/.local/bin:$PATH"` to your shells rc file. For example you can run `echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc` if you use bash.
 
 ## Arch Linux
 
@@ -98,6 +103,10 @@ To run pokeget you will need is bash and cURL.
 To install pokeget, you will need cURL if you don't clone the repository and instead use the install instructions.
 
 All dependencies are usually installed by default on most Linux distros, as this script is designed to run on GNU/Linux.
+
+It should also be able to run on macOS, however it has not been tested yet.
+
+*If you test it on **macOS**/**other non linux systems** you can open an issue with your results and they will be added in this section of the README.*
 
 ## Contributors
 
