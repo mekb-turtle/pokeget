@@ -14,6 +14,25 @@
 
 Pokeget is a bash script you can use to display cool sprites of pokemon in your terminal.
 
+## Table of contents
+
+- [pokeget](#pokeget)
+  - [Table of contents](#table-of-contents)
+  - [Info](#info)
+  - [Examples](#examples)
+  - [Installation](#installation)
+    - [Arch linux](#arch-linux)
+    - [Other distros](#other-distros)
+  - [Uninstallation](#uninstallation)
+  - [Sources](#sources)
+  - [Usage](#usage)
+  - [Dependencies](#dependencies)
+  - [Contributors](#contributors)
+  - [FAQ](#faq)
+    - [Hey, isn't this similar to pokemon-colorscripts?](#hey-isnt-this-similar-to-pokemon-colorscripts)
+  - [Todo](#todo)
+  - [Known issues](#known-issues)
+
 ## Info
 
 Pokeget has support for all pokemon up to gen 8 *including gen 8* and is written in bash.
@@ -28,6 +47,16 @@ Scripts used to convert, trim, crop, scrape, etc... are in `scripts/dev`, but ar
 ![pokeget](https://github.com/talwat/pokeget/raw/main/examples/big1.png)
 
 ## Installation
+
+### Arch linux
+
+On Arch linux, you can install it from AUR:
+
+``` bash
+paru -S pokeget-git
+```
+
+### Other distros
 
 *Note: the install commands should be exactly the same for **updating**, and **repairing** pokeget.*
 
@@ -53,14 +82,6 @@ When updating, make sure you do the same command you did when installing to avoi
 If pokeget is not found after doing a user installation, then do a system wide installation, because this usually means `~/.local/bin` is not added to PATH.
 
 If you want to add `~/.local/bin` to PATH append `export PATH="$HOME/.local/bin:$PATH"` to your shells rc file. For example you can run `echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc` if you use bash.
-
-## Arch Linux
-
-On Arch Linux, you can install it from AUR:
-
-``` bash
-paru -S pokeget-git
-```
 
 ## Uninstallation
 
