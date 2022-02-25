@@ -30,6 +30,8 @@ Pokeget is a bash script you can use to display cool sprites of pokemon in your 
   - [Contributors](#contributors)
   - [FAQ](#faq)
     - [Hey, isn't this similar to pokemon-colorscripts?](#hey-isnt-this-similar-to-pokemon-colorscripts)
+      - [pokeget example](#pokeget-example)
+      - [pokemon-colorscripts example](#pokemon-colorscripts-example)
   - [Todo](#todo)
   - [Known issues](#known-issues)
 
@@ -158,7 +160,12 @@ Pokeget has already achieved feature parity with pokemon-colorscripts, and gener
 
 Pokemon-colorscripts is still a really cool program, but pokeget does fix some of its issues.
 
+#### pokeget example
+
 ![pokeget](https://github.com/talwat/pokeget/raw/main/examples/pokeget-and-pokemon-colorscripts/pokeget-moltres.png)
+
+#### pokemon-colorscripts example
+
 ![pokeget](https://github.com/talwat/pokeget/raw/main/examples/pokeget-and-pokemon-colorscripts/pokemon-colorscripts-moltres.png)
 
 ## Todo
