@@ -12,7 +12,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/talwat/pokeget)](https://github.com/talwat/pokeget/issues)
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/talwat/pokeget)
 
-Pokeget is a bash script you can use to display cool sprites of pokemon in your terminal.
+pokeget is a bash script you can use to display cool sprites of pokemon in your terminal.
 
 ## Table of contents
 
@@ -27,6 +27,7 @@ Pokeget is a bash script you can use to display cool sprites of pokemon in your 
   - [Sources](#sources)
   - [Usage](#usage)
   - [Dependencies](#dependencies)
+  - [pokeget-lite](#pokeget-lite)
   - [Contributors](#contributors)
   - [FAQ](#faq)
     - [Hey, isn't this similar to pokemon-colorscripts?](#hey-isnt-this-similar-to-pokemon-colorscripts)
@@ -37,9 +38,9 @@ Pokeget is a bash script you can use to display cool sprites of pokemon in your 
 
 ## Info
 
-Pokeget has support for all pokemon up to gen 8 *including gen 8* and is written in bash.
+pokeget has support for all pokemon up to gen 8 *including gen 8* and is written in bash.
 
-Pokeget has only needs basic dependencies usually preinstalled in GNU/Linux systems.
+pokeget has only needs basic dependencies usually preinstalled in [GNU](https://www.gnu.org/)/[Linux](https://kernel.org/) systems.
 
 You can also use `pokeget-lite` if you think normal pokeget is bloated and you want something a lot simpler.
 
@@ -121,15 +122,24 @@ If you want a list of flags, you can look at [USAGE.md](USAGE.md).
 
 ## Dependencies
 
-To run pokeget you will need is bash, cURL, and the GNU coreutils.
+To run pokeget you will need is bash, [cURL](https://curl.se/), and the [GNU](https://www.gnu.org/) coreutils.
 
-To install pokeget, you will need cURL if you don't clone the repository and instead use the install instructions.
+To install pokeget, you will need [cURL](https://curl.se/) if you don't clone the repository and instead use the install instructions.
 
-All dependencies are usually installed by default on most Linux distros, as this script is designed to run on GNU/Linux.
+All dependencies are usually installed by default on most Linux distros, as this script is designed to run on [GNU](https://www.gnu.org/)/[Linux](https://kernel.org/).
 
 It should also be able to run on macOS, however it has not been tested yet.
 
-*If you test it on **macOS**/**other non linux systems** you can open an issue with your results and they will be added in this section of the README.*
+*If you test it on **macOS**/**other non [Linux](https://kernel.org/) systems** you can open an issue with your results and they will be added in this section of the README.*
+
+## pokeget-lite
+
+pokeget-lite is a much simpler script in comparison to normal pokeget.
+*pokeget-lite is just under 50 sloc!*
+
+It has no flags or a config file, and is limited to small sprites only. It supports sprites up to gen 8 *including gen 8*.
+
+It still requires bash and [cURL](https://curl.se/), however if you plan to use it on a non-[GNU](https://www.gnu.org/) system such as [Alpine](https://alpinelinux.org/) you might have more success due to it not relying on any of the [GNU](https://www.gnu.org/) coreutils.
 
 ## Contributors
 
@@ -146,17 +156,17 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 
 ### Hey, isn't this similar to [pokemon-colorscripts?](https://gitlab.com/phoneybadger/pokemon-colorscripts/)
 
-Pokeget is not a clone of pokemon-colorscripts, nor was inspired by it in the first place.
+pokeget is not a clone of pokemon-colorscripts, nor was inspired by it in the first place.
 
 The true main difference is that pokemon-colorscripts gets its sprites from a folder stored locally while pokeget get's its sprites from the pokeget github repo.
-This allows pokeget's sprites to be renamed, fixed, redone, and tweaked without any update necessary from the user. Pokeget is very portable and has very few dependencies *just cURL, the GNU coreutils and bash!*.
+This allows pokeget's sprites to be renamed, fixed, redone, and tweaked without any update necessary from the user. pokeget is very portable and has very few dependencies *just [cURL](https://curl.se/), the [GNU](https://www.gnu.org/) coreutils and bash!*.
 
 When I googled about similar tools while I was developing the first version of pokeget I found pokemon-colorscripts and even used it as a source for a while.
 But I continued developing pokeget because I generally had some issues with it and I thought it could be improved,
 
 pokemon-colorscripts has issues with its sprites with some of them appearing blurry, as well as a lack of big sprites, shiny sprites, mega forms, variants, back sprites, and generally having less options. Additionally, pokemon-colorscripts hasn't been updated in 6 months *at the time of writing this*.
 
-Pokeget has already achieved feature parity with pokemon-colorscripts, and generally has more features.
+pokeget has already achieved feature parity with pokemon-colorscripts, and generally has more features.
 
 Pokemon-colorscripts is still a really cool program, but pokeget does fix some of its issues.
 
