@@ -145,7 +145,8 @@ elif [ "$1" == "help" ]; then
   echo -e "  ${BOLD}-variant <num>:${RESET} This flag dictates the following things: wether the pokemon is mega, alolan form, pokemon specific things such as arceus, and a few other things."
   echo -e "  ${BOLD}-random <gens>:${RESET} This flag makes a random pokemon. You can specify what generations the random pokemon will be in, or if you put '0' it will pick a random pokemon from any generation. Random generations should be separated by ',' with no spaces."
   echo -e "${BOLD}${CYAN}Credits${RESET}"
-  echo "  Pokeget now gets its sprites from Pokemon Reborn, which is why there may be some pokemon that look different."
+  echo "  Pokeget gets its sprites from Pokemon Reborn, which is why there may be some pokemon that look different. "
+  echo "  If you do not like this set ${BOLD}getVanilla${RESET} to true in your config file which will make pokeget use sprites from PokeAPI which have the same look as normal sprites."
   echo "  All sprites and art are originally made by gamefreak, so huge props to them."
   echo "  Code written by Talwat in bash."
   exit 0
@@ -183,7 +184,7 @@ else
 
     finalRandomGen=${randomGens[$randomGenNum]}
     
-    # Debug Info
+    # Debug info
 
     if [ $debug == true ]; then
       echo -e "${YELLOW}[!]${RESET} randomGenNum: $randomGenNum"
@@ -305,12 +306,19 @@ else
 
   url="https://raw.githubusercontent.com/talwat/pokeget/main/${folderName}/${size}/${id}.txt"
 
+  # Get final sprite using cURL
+
+  rSolo=$(curl -s -L "${url}")
+
+  # Put another sprite next to the first one if partner is true
+
   if [ $partner == true ]; then
-    rSolo=$(curl -s -L "${url}")
     r=$(paste <(echo "${rSolo}") <(echo "${rSolo}"))
-  else 
-    r=$(curl -s -L "${url}")
+  else
+    r=$rSolo
   fi
+
+  # Debug info
 
   if [ $debug == true ]; then
     echo -e "${YELLOW}[!]${RESET} URL: $url"

@@ -41,7 +41,7 @@ Pokeget has support for all pokemon up to gen 8 *including gen 8* and is written
 
 Pokeget has only needs basic dependencies usually preinstalled in GNU/Linux systems.
 
-Scripts used to convert, trim, crop, scrape, etc... are in `scripts/dev`, but are very messy and shouldn't be used seriously.
+You can also use `pokeget-lite` if you think normal pokeget is bloated and you want something a lot simpler.
 
 ## Examples
 
