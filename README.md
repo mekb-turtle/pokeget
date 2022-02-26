@@ -83,7 +83,7 @@ When updating, make sure you do the same command you did when installing to avoi
 
 If pokeget is not found after doing a user installation, then do a system wide installation, because this usually means `~/.local/bin` is not added to PATH.
 
-If you want to add `~/.local/bin` to PATH append `export PATH="$HOME/.local/bin:$PATH"` to your shells rc file. For example you can run `echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc` if you use bash.
+If you want to add `~/.local/bin` to PATH append `export PATH="$HOME/.local/bin:$PATH"` to your shells rc file. For example you can run `echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc` if you use bash.
 
 ## Uninstallation
 
