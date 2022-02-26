@@ -50,6 +50,10 @@ Dictates wether the pokemon is shiny. It only works on big sprites.
 
 Makes the pokemon not shiny.
 
+### -partner
+
+Makes two of the same pokemon instead of just one.
+
 ### -variant \<num>
 
 This flag dictates a lot of things, such as:
@@ -57,7 +61,8 @@ Wether the pokemon is mega, alolan form, pokemon specific things such as arceus,
 
 ### -random \<gen>
 
-This flag makes a random pokemon. You can specify what generation the random pokemon will be in, or if you put `0` it will pick a random pokemon from any generation.
+This flag makes a random pokemon. You can specify what generations the random pokemon will be in, or if you put '0' it will pick a random pokemon from any generation.s
+Random generations should be separated by ',' with no spaces.
 
 ## Config file
 

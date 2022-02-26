@@ -19,8 +19,9 @@ shiny=false         # The default shiny value.
 back=false          # The default back value.
 debug=false         # The default debug value.
 variant=""          # The default variant value.
-randomGen=""        # The default randomGen value.
+randomGens=()       # The default randomGens value.
 getVanilla=false    # The default getfromPokeAPI value.
+partner=false       # The default partner value.
 
 # Make config file.
 
@@ -87,6 +88,9 @@ for var in "$@"; do
   -random)
     randomAsk=true
     ;;
+  -partner)
+    partner=true
+    ;;
   -*)
     echo -e "${RED}[!]${RESET} Invalid flag"
     exit
@@ -102,7 +106,9 @@ for var in "$@"; do
     # Check if the random flag has been called to set the random value
 
     elif [ $randomAsk == true ]; then
-      randomGen="$var"
+
+      # Splits $var with ',' as the seperator and assigns it to randomGens
+      IFS=',' read -ra randomGens <<< "$var"
     
     # If no flags which require another value have been called, set the raw ID
     else
@@ -135,8 +141,9 @@ elif [ "$1" == "help" ]; then
   echo -e "  ${BOLD}-front:${RESET}         Makes the pokemon the front sprite. in the pokemon games, this would be the sprite found of your opponents pokemon while battling. Only works on big sprites."
   echo -e "  ${BOLD}-shiny:${RESET}         Dictates wether the pokemon is shiny, only works on big sprites. (NOTE: the shiny colors are from pokemon reborn, so a lot of them are completely different than the normal shiny colors.)"
   echo -e "  ${BOLD}-notshiny:${RESET}      Makes the pokemon not shiny."
+  echo -e "  ${BOLD}-partner:${RESET}       Makes two of the same pokemon instead of just one."
   echo -e "  ${BOLD}-variant <num>:${RESET} This flag dictates the following things: wether the pokemon is mega, alolan form, pokemon specific things such as arceus, and a few other things."
-  echo -e "  ${BOLD}-random <gen>:${RESET}  This flag makes a random pokemon. You can specify what generation the random pokemon will be in, or if you put '0' it will pick a random pokemon from any generation."
+  echo -e "  ${BOLD}-random <gens>:${RESET} This flag makes a random pokemon. You can specify what generations the random pokemon will be in, or if you put '0' it will pick a random pokemon from any generation. Random generations should be separated by ',' with no spaces."
   echo -e "${BOLD}${CYAN}Credits${RESET}"
   echo "  Pokeget now gets its sprites from Pokemon Reborn, which is why there may be some pokemon that look different."
   echo "  All sprites and art are originally made by gamefreak, so huge props to them."
@@ -162,11 +169,32 @@ else
 
   # Generate random number
 
-  if [ "$randomGen" != "" ]; then
+  if [ "${randomGens[0]}" != "" ]; then
 
-    # TODO: Implement a better way of doing this
+    # Generate random number to pick the generation from the input
 
-    case $randomGen in
+    randomGenNum=$(shuf -i 0-${#randomGens[@]} -n 1)
+
+    # Subtract 1 from the random number generated to pick the generation
+
+    randomGenNum=$((randomGenNum-1))
+
+    # Use the random number to pick a generation
+
+    finalRandomGen=${randomGens[$randomGenNum]}
+    
+    # Debug Info
+
+    if [ $debug == true ]; then
+      echo -e "${YELLOW}[!]${RESET} randomGenNum: $randomGenNum"
+      echo -e "${YELLOW}[!]${RESET} finalRandomGen: $finalRandomGen"
+      echo -e "${YELLOW}[!]${RESET} randomGens: ${randomGens[0]}"
+    fi
+
+    # Get a random pokemon from the random generation
+    # TODO: Implement a better way of doing this 
+
+    case $finalRandomGen in
 
       # All Gens
       0)
@@ -205,7 +233,12 @@ else
 
       # Gen 7
       7)
-        rawId=$(shuf -i 722-807 -n 1)
+        rawId=$(shuf -i 722-809 -n 1)
+        ;;
+      
+      # Gen 8
+      8)
+        rawId=$(shuf -i 810-898 -n 1)
         ;;
     esac
   fi
@@ -272,9 +305,15 @@ else
 
   url="https://raw.githubusercontent.com/talwat/pokeget/main/${folderName}/${size}/${id}.txt"
 
-  r=$(curl -s -L "${url}")
+  if [ $partner == true ]; then
+    rSolo=$(curl -s -L "${url}")
+    r=$(paste <(echo "${rSolo}") <(echo "${rSolo}"))
+  else 
+    r=$(curl -s -L "${url}")
+  fi
+
   if [ $debug == true ]; then
-    echo -e "${YELLOW}[!]${RESET} $url"
+    echo -e "${YELLOW}[!]${RESET} URL: $url"
   fi
 
   # Print output or 404 message
