@@ -121,7 +121,7 @@ If you want a list of flags, you can look at [USAGE.md](USAGE.md).
 
 ## Dependencies
 
-To run pokeget you will need is bash and cURL.
+To run pokeget you will need is bash, cURL, and the GNU coreutils.
 
 To install pokeget, you will need cURL if you don't clone the repository and instead use the install instructions.
 
@@ -149,7 +149,7 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 Pokeget is not a clone of pokemon-colorscripts, nor was inspired by it in the first place.
 
 The true main difference is that pokemon-colorscripts gets its sprites from a folder stored locally while pokeget get's its sprites from the pokeget github repo.
-This allows pokeget's sprites to be renamed, fixed, redone, and tweaked without any update necessary from the user. Pokeget is very portable and has very few dependencies *just cURL and bash!*.
+This allows pokeget's sprites to be renamed, fixed, redone, and tweaked without any update necessary from the user. Pokeget is very portable and has very few dependencies *just cURL, the GNU coreutils and bash!*.
 
 When I googled about similar tools while I was developing the first version of pokeget I found pokemon-colorscripts and even used it as a source for a while.
 But I continued developing pokeget because I generally had some issues with it and I thought it could be improved,
