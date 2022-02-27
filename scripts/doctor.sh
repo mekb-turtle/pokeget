@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# shellcheck source=/dev/null
+
 GREEN="\x1B[32m"
 #ORANGE="\e[33m"
 RED="\x1B[31m"

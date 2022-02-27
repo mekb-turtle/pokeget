@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# shellcheck source=/dev/null
+
 # Heya! If you want to improve the code, fix bugs, or add new features make a PR on the github repo! https://github.com/talwat/pokeget
 
 # Color variables
