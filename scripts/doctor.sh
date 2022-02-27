@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 GREEN="\x1B[32m"
-ORANGE="\e[33m"
+#ORANGE="\e[33m"
 RED="\x1B[31m"
 CYAN="\x1B[36m"
 BOLD="\x1B[1m"
@@ -42,3 +42,6 @@ rawOsRelease=$(cat /etc/os-release)
 parsedOsRelease=$(echo "$rawOsRelease" | cut -d'"' -f 2 | sed -n "$(grep -n PRETTY_NAME /etc/os-release | cut -d : -f1)"p)
 
 echo -e "${CYAN}[!]${RESET} Running $parsedOsRelease"
+echo -e "${CYAN}[!]${RESET} Shells [
+$(cat /etc/shells)"
+echo -e "]"
