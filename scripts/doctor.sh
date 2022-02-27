@@ -35,13 +35,9 @@ else
   echo -e "${GREEN}[!]${RESET} pokeget found!"
 fi
 
-rawOsRelease=$(cat /etc/os-release)
+source /etc/os-release
 
-# TODO: make this horrible peice of code more readable
-
-parsedOsRelease=$(echo "$rawOsRelease" | cut -d'"' -f 2 | sed -n "$(grep -n PRETTY_NAME /etc/os-release | cut -d : -f1)"p)
-
-echo -e "${CYAN}[!]${RESET} Running $parsedOsRelease"
+echo -e "${CYAN}[!]${RESET} Running $PRETTY_NAME"
 echo -e "${CYAN}[!]${RESET} Shells [
 $(cat /etc/shells)"
 echo -e "]"
