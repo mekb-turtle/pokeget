@@ -12,4 +12,6 @@ uninstall:
 	@rm -rf $(PREFIX)/bin/pokeget
 
 pathadd:
-	@echo 'export PATH="$$HOME/.local/bin:$$PATH"' >> ~/.bashrc
+	@export PATH="$$HOME/.local/bin:$$PATH"' >> ~/.profile
+	@test -f ~/.bashrc && echo 'export PATH="$$HOME/.local/bin:$$PATH"' >> ~/.bashrc
+	@test -f ~/.zshrc && echo 'export PATH="$$HOME/.local/bin:$$PATH"' >> ~/.zshrc
