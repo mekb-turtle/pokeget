@@ -64,4 +64,4 @@ pathadd:
 	@test -f ~/.zshrc && echo 'export PATH="$$HOME/.local/bin:$$PATH"' >> ~/.zshrc
 
 getpokedex:
-	./scripts/get_pokedex.sh
+	@./scripts/get_pokedex.sh
