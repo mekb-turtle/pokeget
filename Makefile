@@ -10,7 +10,7 @@ ziptar:
 
 	@echo "Making source tarballs..."
 	@tar cvf output/pokeget_$(VERSION)-src.tar Makefile pokeget 
-	@tar cvf output/pokeget_$(VERSION)-src-lite.tar Makefile pokeget
+	@tar cvf output/pokeget-lite_$(VERSION)-src.tar Makefile pokeget
 
 zipdeb:
 	@-rm output/*.deb
