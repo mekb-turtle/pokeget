@@ -25,8 +25,8 @@ pokeget is a bash script you can use to display cool sprites of pokemon in your 
     - [Debian & Debian derivatives *Ubuntu, Linux mint, etc...*](#debian--debian-derivatives-ubuntu-linux-mint-etc)
     - [Other distros](#other-distros)
       - [Install commands *recommended*](#install-commands-recommended)
-      - [Using Git](#using-git)
-      - [PATH Issues *(pokeget not found when doing a local install)*](#path-issues-pokeget-not-found-when-doing-a-local-install)
+      - [Using git](#using-git)
+      - [PATH issues *(pokeget not found when doing a local install)*](#path-issues-pokeget-not-found-when-doing-a-local-install)
   - [Uninstallation](#uninstallation)
   - [Sources](#sources)
   - [Usage](#usage)
@@ -88,11 +88,11 @@ sudo curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --out
 sudo chmod +x /usr/bin/pokeget
 ```
 
-#### Using Git
+#### Using git
 
 You can also clone the repository and then run the script from the directory you cloned it in, in which case you can run `git pull` to update it if you haven't moved the script to a different directory, or you can run `make install`.
 
-#### PATH Issues *(pokeget not found when doing a local install)*
+#### PATH issues *(pokeget not found when doing a local install)*
 
 If pokeget is not found after doing a user installation, then do a system wide installation, because this usually means `~/.local/bin` is not added to PATH.
 
