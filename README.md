@@ -173,7 +173,9 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 pokeget is not a clone of pokemon-colorscripts, nor was inspired by it in the first place.
 
 The true main difference is that pokemon-colorscripts gets its sprites from a folder stored locally while pokeget get's its sprites from the pokeget github repo.
-This allows pokeget's sprites to be renamed, fixed, redone, and tweaked without any update necessary from the user. pokeget is very portable and has very few dependencies *just [cURL](https://curl.se/), the [GNU](https://www.gnu.org/) coreutils and bash!*
+This allows pokeget's sprites to be renamed, fixed, redone, and tweaked without any update necessary from the user.
+
+pokemon-colorscripts has been tested on macOS though, and while pokeget-lite could work theoretically on macOS it has not been tested.
 
 When I googled about similar tools while I was developing the first version of pokeget I found pokemon-colorscripts and even used it as a source for a while.
 But I continued developing pokeget because I generally had some issues with it and I thought it could be improved.
