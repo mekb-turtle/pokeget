@@ -21,8 +21,12 @@ pokeget is a bash script you can use to display cool sprites of pokemon in your 
   - [Info](#info)
   - [Examples](#examples)
   - [Installation](#installation)
-    - [Arch linux](#arch-linux)
+    - [Arch linux & Arch linux derivatives *Manjaro, EndeavorOS, etc...*](#arch-linux--arch-linux-derivatives-manjaro-endeavoros-etc)
+    - [Debian & Debian derivatives *Ubuntu, Linux mint, etc...*](#debian--debian-derivatives-ubuntu-linux-mint-etc)
     - [Other distros](#other-distros)
+      - [Install commands *recommended*](#install-commands-recommended)
+      - [Using Git](#using-git)
+      - [PATH Issues *(pokeget not found when doing a local install)*](#path-issues-pokeget-not-found-when-doing-a-local-install)
   - [Uninstallation](#uninstallation)
   - [Sources](#sources)
   - [Usage](#usage)
@@ -51,17 +55,23 @@ You can also use `pokeget-lite` if you think normal pokeget is bloated and you w
 
 ## Installation
 
-### Arch linux
+### Arch linux & Arch linux derivatives *Manjaro, EndeavorOS, etc...*
 
 On Arch linux, you can install it from AUR:
 
 ``` bash
-paru -S pokeget-git
+yum -S pokeget-git
 ```
+
+### Debian & Debian derivatives *Ubuntu, Linux mint, etc...*
+
+You can download the .deb package from the [releases tab](https://github.com/talwat/pokeget/releases) and then use dpkg/apt to install pokeget. If you do that, please uninstall pokeget using dpkg/apt.
 
 ### Other distros
 
-*Note: the install commands should be exactly the same for **updating**, and **repairing** pokeget.*
+#### Install commands *recommended*
+
+*Note: the install commands should be exactly the same for **updating**, and **repairing** pokeget in case `pokeget update` fails.*
 
 You can install pokeget by running these install commands:
 
@@ -78,9 +88,11 @@ sudo curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --out
 sudo chmod +x /usr/bin/pokeget
 ```
 
-You can also clone the repository and then run the script from the directory you cloned it in, in which case you can run `git pull` to update it if you haven't moved the script to a different directory.
+#### Using Git
 
-When updating, make sure you do the same command you did when installing to avoid having multiple copies of pokeget.
+You can also clone the repository and then run the script from the directory you cloned it in, in which case you can run `git pull` to update it if you haven't moved the script to a different directory, or you can run `make install`.
+
+#### PATH Issues *(pokeget not found when doing a local install)*
 
 If pokeget is not found after doing a user installation, then do a system wide installation, because this usually means `~/.local/bin` is not added to PATH.
 
