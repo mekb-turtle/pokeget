@@ -67,6 +67,8 @@ yum -S pokeget-git
 
 You can download the .deb package from the [releases tab](https://github.com/talwat/pokeget/releases) and then use dpkg/apt to install pokeget. If you do that, please uninstall pokeget using dpkg/apt.
 
+In true debian fashion this is the most stable option.
+
 ### Other distros
 
 #### Install commands *recommended*
