@@ -126,6 +126,10 @@ if [ "$1" == "" ]; then
   echo -e "${CYAN}[!]${RESET} Use ${BOLD}pokeget help${RESET} to see usage."
   exit 0
 
+elif [ "$1" == "version" ]; then
+  echo -e "${CYAN}[!]${RESET} pokeget 1.1 in $PWD"
+  exit 0
+
 # Help Command
 
 elif [ "$1" == "help" ]; then
