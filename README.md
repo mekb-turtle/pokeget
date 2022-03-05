@@ -60,7 +60,7 @@ You can also use `pokeget-lite` if you think normal pokeget is bloated and you w
 On Arch linux, you can install it from AUR:
 
 ``` bash
-yum -S pokeget-git
+yay -S pokeget-git
 ```
 
 ### Debian & Debian derivatives *Ubuntu, Linux mint, etc...*
