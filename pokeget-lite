@@ -51,7 +51,7 @@ else
   # Put together the final URL
 
   url="https://raw.githubusercontent.com/talwat/pokeget/main/${folderName}/small/${id}.txt"
-  
+
   # Get final sprite using cURL
 
   r=$(curl -s -L "${url}")

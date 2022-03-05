@@ -16,14 +16,14 @@ RESET="\x1B[0m"
 
 # Configurable
 
-small=false         # The default size value.
-shiny=false         # The default shiny value.
-back=false          # The default back value.
-debug=false         # The default debug value.
-variant=""          # The default variant value.
-randomGens=()       # The default randomGens value.
-getVanilla=false    # The default getfromPokeAPI value.
-partner=false       # The default partner value.
+small=false      # The default size value.
+shiny=false      # The default shiny value.
+back=false       # The default back value.
+debug=false      # The default debug value.
+variant=""       # The default variant value.
+randomGens=()    # The default randomGens value.
+getVanilla=false # The default getfromPokeAPI value.
+partner=false    # The default partner value.
 
 # Make config file.
 
@@ -104,14 +104,14 @@ for var in "$@"; do
     if [ $variantAsk == true ]; then
       variant="$var"
       variantAsk=false
-    
+
     # Check if the random flag has been called to set the random value
 
     elif [ $randomAsk == true ]; then
 
       # Splits $var with ',' as the seperator and assigns it to randomGens
-      IFS=',' read -ra randomGens <<< "$var"
-    
+      IFS=',' read -ra randomGens <<<"$var"
+
     # If no flags which require another value have been called, set the raw ID
     else
       rawId=$var
@@ -163,7 +163,7 @@ elif [ "$1" == "update" ]; then
     chmod +x usr/bin/pokeget
   }
   if [ "$USER" != "root" ]; then
-    if [ -f "/usr/bin/pokeget" ] && [ ! -f "$HOME/.local/bin/pokeget" ]; then 
+    if [ -f "/usr/bin/pokeget" ] && [ ! -f "$HOME/.local/bin/pokeget" ]; then
       curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output /tmp/pokeget
       chmod +x /tmp/pokeget
       sudo mv /tmp/pokeget /usr/bin/
@@ -175,9 +175,10 @@ elif [ "$1" == "update" ]; then
   fi
   echo -e "${GREEN}[!]${RESET} Updated pokeget."
   exit 0
-  
 
-elif [ "$1" == "uninstall" ]; then
+elif
+  [ "$1" == "uninstall" ]
+then
   bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/uninstall.sh)
 
 else
@@ -192,12 +193,12 @@ else
 
     # Subtract 1 from the random number generated to pick the generation
 
-    randomGenNum=$((randomGenNum-1))
+    randomGenNum=$((randomGenNum - 1))
 
     # Use the random number to pick a generation
 
     finalRandomGen=${randomGens[$randomGenNum]}
-    
+
     # Debug info
 
     if [ $debug == true ]; then
@@ -239,23 +240,32 @@ else
     id=$(echo "$rawId" | tr '[:upper:]' '[:lower:]')
   fi
 
+  # Disable certain options if getVanilla is true.
+
+  if [ $getVanilla == true ]; then
+    back=false
+    variant=""
+  fi
+
+  # Options that work with any config
+
+  if [ $shiny == true ]; then
+    id="${id}s"
+  fi
+
   # Apply values from flags & config file.
 
   if [ $small == true ]; then
     size="small"
-    shiny=false
-  
+
   # Apply other flags if the small option is false. This is because small sprites don't have back sprites and shiny sprites
   else
     size="big"
-    if [ $shiny == true ]; then
-      id="${id}s"
-    fi
-    if [ $back == true ] && [ $getVanilla == false ]; then
+    if [ $back == true ]; then
       id="${id}b"
     fi
   fi
-  if [ "$variant" != "" ] && [ $getVanilla == false ]; then
+  if [ "$variant" != "" ]; then
     id="${id}_${variant}"
   fi
 
