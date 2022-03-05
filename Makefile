@@ -5,16 +5,16 @@ all:
 	@echo "pokeget version $(VERSION)"
 
 ziptar:
-	@rm -rf output
-	@mkdir output
+	@-rm output/*.tar
+	@-mkdir output
 
 	@echo "Making source tarballs..."
-	@tar cvf output/pokeget-src.tar Makefile pokeget 
-	@tar cvf output/pokeget-src-lite.tar Makefile pokeget
+	@tar cvf output/pokeget_$(VERSION)-src.tar Makefile pokeget 
+	@tar cvf output/pokeget_$(VERSION)-src-lite.tar Makefile pokeget
 
 zipdeb:
-	@rm -rf output
-	@mkdir output
+	@-rm output/*.deb
+	@-mkdir output
 
 	@echo "Making .deb packages..."
 
@@ -31,6 +31,7 @@ zipdeb:
 
 	@chmod 775 output/pokeget_$(VERSION)/DEBIAN/postinst
 	@dpkg-deb --build --root-owner-group output/pokeget_$(VERSION)
+	@rm -rf output/pokeget_$(VERSION)
 
 	@echo "Making pokeget-lite .deb package..."
 
@@ -46,6 +47,7 @@ zipdeb:
 
 	@chmod 775 output/pokeget-lite_$(VERSION)/DEBIAN/postinst
 	@dpkg-deb --build --root-owner-group output/pokeget-lite_$(VERSION)
+	@rm -rf output/pokeget-lite_$(VERSION)
 
 install:
 	@mkdir -p $(PREFIX)/bin
