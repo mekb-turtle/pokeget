@@ -176,12 +176,12 @@ The true main difference is that pokemon-colorscripts gets its sprites from a fo
 This allows pokeget's sprites to be renamed, fixed, redone, and tweaked without any update necessary from the user. pokeget is very portable and has very few dependencies *just [cURL](https://curl.se/), the [GNU](https://www.gnu.org/) coreutils and bash!*
 
 When I googled about similar tools while I was developing the first version of pokeget I found pokemon-colorscripts and even used it as a source for a while.
-But I continued developing pokeget because I generally had some issues with it and I thought it could be improved,
+But I continued developing pokeget because I generally had some issues with it and I thought it could be improved.
 
-pokemon-colorscripts has issues with its sprites with some of them appearing blurry, as well as a lack of big sprites, mega forms, variants, back sprites, and generally having less options.
+pokemon-colorscripts has issues with its sprites with some of them appearing blurry, as well as a lack of some other features.
 pokeget has already achieved feature parity with pokemon-colorscripts, and generally has more features.
 
-Pokemon-colorscripts is still a really cool program, but pokeget does fix some of its issues.
+pokemon-colorscripts is still a really cool program, but pokeget does fix some of its issues.
 
 #### pokeget example
 
