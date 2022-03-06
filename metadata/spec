@@ -6,6 +6,7 @@ Version:        $VERSION
 Release:        1
 Summary:        pokeget is a bash script you can use to display cool sprites of pokemon in your terminal.
 BuildArch:      noarch
+Requires:       curl, bash, coreutils
 
 License:        MIT
 URL:            https://github.com/talwat/pokeget

@@ -14,6 +14,16 @@ RED="\x1B[31m"
 BOLD="\x1B[1m"
 RESET="\x1B[0m"
 
+# Functions
+
+function check_for_deb {
+  command dpkg -s pokeget >/dev/null 2>&1
+}
+
+function check_for_rpm {
+  command rpm -q pokeget >/dev/null 2>&1
+}
+
 # Configurable
 
 small=false      # The default size value.
@@ -127,7 +137,7 @@ if [ "$1" == "" ]; then
   exit 0
 
 elif [ "$1" == "version" ]; then
-  echo -e "${CYAN}[!]${RESET} pokeget 1.1.1 ${BASH_SOURCE[0]}"
+  echo -e "${CYAN}[!]${RESET} pokeget 1.2 ${BASH_SOURCE[0]}"
   exit 0
 
 # Help Command
@@ -158,31 +168,30 @@ elif [ "$1" == "help" ]; then
   exit 0
 
 elif [ "$1" == "update" ]; then
-  function user_update {
-    curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output ~/.local/bin/pokeget
-    chmod +x ~/.local/bin/pokeget
-  }
-  function sys_update {
-    curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output usr/bin/pokeget
-    chmod +x usr/bin/pokeget
-  }
-  if [ "$USER" != "root" ]; then
-    if [ -f "/usr/bin/pokeget" ] && [ ! -f "$HOME/.local/bin/pokeget" ]; then
-      curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output /tmp/pokeget
-      chmod +x /tmp/pokeget
-      sudo mv /tmp/pokeget /usr/bin/
-    else
-      user_update
-    fi
-  else
-    sys_update
+
+  if check_for_deb || check_for_rpm; then
+    echo -e "${RED}[!]${RESET} It looks like you installed pokeget with dpkg/rpm, please update pokeget with them as well to avoid any issues."
+    exit 1
   fi
+
+  rm /tmp/pokeget >/dev/null 2>&1
+  curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output /tmp/pokeget
+  chmod +x /tmp/pokeget
+  if [[ "${BASH_SOURCE[0]}" == *"$HOME"* ]] || [ "$USER" == "root" ]; then
+    mv /tmp/pokeget "${BASH_SOURCE[0]}"
+  else
+    sudo mv /tmp/pokeget "${BASH_SOURCE[0]}"
+  fi
+
   echo -e "${GREEN}[!]${RESET} Updated pokeget."
   exit 0
 
-elif
-  [ "$1" == "uninstall" ]
-then
+elif [ "$1" == "uninstall" ]; then
+
+  if check_for_deb || check_for_rpm; then
+    echo -e "${RED}[!]${RESET} It looks like you installed pokeget with dpkg/rpm, please uninstall pokeget with them as well to avoid any issues."
+    exit 1
+  fi
   bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/uninstall.sh)
 
 else

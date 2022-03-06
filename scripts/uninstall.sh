@@ -3,9 +3,7 @@
 # Color variables
 
 GREEN="\x1B[32m"
-#CYAN="\x1B[36m"
 ORANGE="\e[33m"
-BOLD="\x1B[1m"
 RESET="\x1B[0m"
 
 # Y or N function
@@ -23,23 +21,30 @@ yesOrNo() {
 }
 
 areYouSure() {
-  echo -e "${ORANGE}[!]${RESET} Are you sure you want to remove pokeget?"
+  echo -e "${ORANGE}[!]${RESET} Are you sure you want to uninstall pokeget? [y/n]"
   yesOrNo
   if [ $? != 1 ]; then
-    exit
+    exit 1
   fi
 }
 
 echo -e "${GREEN}[!]${RESET} Uninstall script started successfully."
 echo
+
+areYouSure
+echo -e "${ORANGE}[!]${RESET} Removing pokeget...."
 if [[ $USER != "root" ]]; then
-  echo -e "${ORANGE}[!]${RESET} Selecting ${BOLD}uninstallation${RESET} as ${BOLD}normal user${RESET}."
-  areYouSure
-  rm "$HOME/.local/bin/pokeget"
-  rm -rf "$HOME/.config/pokeget"
+  if [ -f "$HOME/.local/bin/pokeget" ]; then
+    rm "$HOME/.local/bin/pokeget"
+    rm -rf "$HOME/.config/pokeget"
+  fi
+  if [ -f "/usr/bin/pokeget" ]; then
+    sudo rm "usr/bin/pokeget"
+  fi
 else
-  echo -e "${ORANGE}[!]${RESET} Selecting ${BOLD}system wide${RESET} ${BOLD}uninstallation${RESET}."
-  areYouSure
-  rm "/usr/bin/pokeget"
+  if [ -f "/usr/bin/pokeget" ]; then
+    rm "/usr/bin/pokeget"
+  fi
 fi
-echo -e "${GREEN}[!]${RESET} Pokeget has been successfully removed."
+echo -e "${GREEN}[!]${RESET} Pokeget has been successfully uninstalled."
+exit 0
