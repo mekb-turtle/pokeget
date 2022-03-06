@@ -127,7 +127,7 @@ if [ "$1" == "" ]; then
   exit 0
 
 elif [ "$1" == "version" ]; then
-  echo -e "${CYAN}[!]${RESET} pokeget 1.1 in $PWD"
+  echo -e "${CYAN}[!]${RESET} pokeget 1.1.1 ${BASH_SOURCE[0]}"
   exit 0
 
 # Help Command
@@ -152,7 +152,7 @@ elif [ "$1" == "help" ]; then
   echo -e "  ${BOLD}-random <gens>:${RESET} This flag makes a random pokemon. You can specify what generations the random pokemon will be in, or if you put '0' it will pick a random pokemon from any generation. Random generations should be separated by ',' with no spaces."
   echo -e "${BOLD}${CYAN}Credits${RESET}"
   echo "  Pokeget gets its sprites from Pokemon Reborn, which is why there may be some pokemon that look different. "
-  echo "  If you do not like this set ${BOLD}getVanilla${RESET} to true in your config file which will make pokeget use sprites from PokeAPI which have the same look as normal sprites."
+  echo -e "  If you do not like this set ${BOLD}getVanilla${RESET} to true in your config file which will make pokeget use sprites from PokeAPI which have the same look as normal sprites."
   echo "  All sprites and art are originally made by gamefreak, so huge props to them."
   echo "  Code written by Talwat in bash."
   exit 0

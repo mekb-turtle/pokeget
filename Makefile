@@ -1,53 +1,81 @@
 PREFIX = ~/.local/
-VERSION = 1.1
 
 all:
-	@echo "pokeget version $(VERSION)"
+	@echo "do 'export VERSION=<version>' to select the version"
+	@echo "selected version: $$VERSION"
+
+zipall:
+	@make ziptar
+	@make zipdeb
+	@make ziprpm
 
 ziptar:
 	@-rm output/*.tar
 	@-mkdir output
 
 	@echo "Making source tarballs..."
-	@tar cvf output/pokeget_$(VERSION)-src.tar Makefile pokeget 
-	@tar cvf output/pokeget-lite_$(VERSION)-src.tar Makefile pokeget
+	@tar cvf output/pokeget_$$VERSION-src.tar Makefile pokeget 
+	@tar cvf output/pokeget-lite_$$VERSION-src.tar Makefile pokeget
 
 zipdeb:
 	@-rm output/*.deb
 	@-mkdir output
 
-	@echo "Making .deb packages..."
+	@echo "Making .deb package..."
 
-	@echo "Making pokeget .deb package..."
-	@rm -rf output/pokeget_$(VERSION)
-	@mkdir output/pokeget_$(VERSION)
-	@mkdir -p output/pokeget_$(VERSION)/usr/bin
-	@cp pokeget output/pokeget_$(VERSION)/usr/bin
+	@rm -rf output/pokeget_$$VERSION
+	@mkdir output/pokeget_$$VERSION
 
-	@mkdir -p output/pokeget_$(VERSION)/DEBIAN
-	@cp metadata/control output/pokeget_$(VERSION)/DEBIAN/control
+	@echo "Copying over script..."
 
-	@cp metadata/postinst output/pokeget_$(VERSION)/DEBIAN/postinst
+	@mkdir -p output/pokeget_$$VERSION/usr/bin
+	@cp pokeget output/pokeget_$$VERSION/usr/bin
 
-	@chmod 775 output/pokeget_$(VERSION)/DEBIAN/postinst
-	@dpkg-deb --build --root-owner-group output/pokeget_$(VERSION)
-	@rm -rf output/pokeget_$(VERSION)
+	@echo "Generating metadata..."
+	
+	@mkdir -p output/pokeget_$$VERSION/DEBIAN
+	@./metadata/control > output/pokeget_$$VERSION/DEBIAN/control
+	@cp metadata/postinst output/pokeget_$$VERSION/DEBIAN/postinst
 
-	@echo "Making pokeget-lite .deb package..."
+	@echo "Building final .deb file..."
 
-	@rm -rf output/pokeget-lite_$(VERSION)
-	@mkdir output/pokeget-lite_$(VERSION)
-	@mkdir -p output/pokeget-lite_$(VERSION)/usr/bin
-	@cp pokeget-lite output/pokeget-lite_$(VERSION)/usr/bin
+	@chmod 775 output/pokeget_$$VERSION/DEBIAN/postinst
+	@dpkg-deb --build --root-owner-group output/pokeget_$$VERSION
 
-	@mkdir -p output/pokeget-lite_$(VERSION)/DEBIAN
-	@cp metadata/control-lite output/pokeget-lite_$(VERSION)/DEBIAN/control
+	@echo "Cleaning up..."
 
-	@cp metadata/postinst-lite output/pokeget-lite_$(VERSION)/DEBIAN/postinst
+	@rm -rf output/pokeget_$$VERSION
 
-	@chmod 775 output/pokeget-lite_$(VERSION)/DEBIAN/postinst
-	@dpkg-deb --build --root-owner-group output/pokeget-lite_$(VERSION)
-	@rm -rf output/pokeget-lite_$(VERSION)
+ziprpm:
+	@-rm output/*.rpm
+	@-rm -rf $$HOME/rpmbuild
+	@-mkdir output
+
+	@echo "Making .rpm package..."
+
+	@echo "Setting up initial tree..."
+
+	@rpmdev-setuptree
+
+	@echo "Making .tar archive..."
+
+	@mkdir pokeget-$$VERSION
+	@cp pokeget pokeget-$$VERSION
+	@tar cvf $$HOME/rpmbuild/SOURCES/pokeget-$$VERSION.tar pokeget-$$VERSION
+	@rm -rf pokeget-$$VERSION
+
+	@echo "Generating metadata..."
+
+	@./metadata/spec > $$HOME/rpmbuild/SPECS/pokeget.spec
+
+	@echo "Building final .rpm file..."
+
+	@rpmbuild -bb $$HOME/rpmbuild/SPECS/pokeget.spec
+	@mv $$HOME/rpmbuild/RPMS/noarch/pokeget-$$VERSION-1.noarch.rpm output/pokeget_$$VERSION.rpm
+
+	@echo "Cleaning up..."
+
+	@rm -rf $$HOME/rpmbuild
 
 install:
 	@mkdir -p $(PREFIX)/bin
@@ -58,7 +86,8 @@ uninstall:
 	@rm -rf $(PREFIX)/bin/pokeget
 
 clean:
-	@rm -rf output
+	@-rm -rf output
+	@-rm -rf $$HOME/rpmbuild
 
 pathadd:
 	@export PATH="$$HOME/.local/bin:$$PATH"' >> ~/.profile

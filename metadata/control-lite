@@ -1,5 +1,0 @@
-Package: pokeget-lite
-Version: 1.0
-Architecture: all
-Maintainer: Talwat
-Description: pokeget-lite is a super minimal bash script you can use to display cool sprites of pokemon in your terminal

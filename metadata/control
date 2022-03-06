@@ -1,5 +1,9 @@
+#!/usr/bin/env bash
+
+echo "
 Package: pokeget
-Version: 1.0
+Version: $VERSION
 Architecture: all
 Maintainer: Talwat
 Description: pokeget is a bash script you can use to display cool sprites of pokemon in your terminal
+"

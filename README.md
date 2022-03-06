@@ -21,12 +21,6 @@ pokeget is a bash script you can use to display cool sprites of pokemon in your 
   - [Info](#info)
   - [Examples](#examples)
   - [Installation](#installation)
-    - [Arch linux & Arch linux derivatives *Manjaro, EndeavorOS, etc...*](#arch-linux--arch-linux-derivatives-manjaro-endeavoros-etc)
-    - [Debian & Debian derivatives *Ubuntu, Linux mint, etc...*](#debian--debian-derivatives-ubuntu-linux-mint-etc)
-    - [Other distros](#other-distros)
-      - [Install commands *recommended*](#install-commands-recommended)
-      - [Using git](#using-git)
-      - [PATH issues *(pokeget not found when doing a local install)*](#path-issues-pokeget-not-found-when-doing-a-local-install)
   - [Uninstallation](#uninstallation)
   - [Sources](#sources)
   - [Usage](#usage)
@@ -55,50 +49,7 @@ You can also use `pokeget-lite` if you think normal pokeget is bloated and you w
 
 ## Installation
 
-### Arch linux & Arch linux derivatives *Manjaro, EndeavorOS, etc...*
-
-On Arch linux, you can install it from AUR:
-
-``` bash
-yay -S pokeget-git
-```
-
-### Debian & Debian derivatives *Ubuntu, Linux mint, etc...*
-
-You can download the .deb package from the [releases tab](https://github.com/talwat/pokeget/releases) and then use dpkg/apt to install pokeget. If you do that, please uninstall pokeget using dpkg/apt.
-
-In true debian fashion this is the most stable option.
-
-### Other distros
-
-#### Install commands *recommended*
-
-*Note: the install commands should be exactly the same for **updating**, and **repairing** pokeget in case `pokeget update` fails.*
-
-You can install pokeget by running these install commands:
-
-```bash
-mkdir -p ~/.local/bin
-curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output ~/.local/bin/pokeget
-chmod +x ~/.local/bin/pokeget
-```
-
-Which will preform a local installation, or to install for all users do:
-
-```bash
-sudo curl -s https://raw.githubusercontent.com/talwat/pokeget/main/pokeget --output /usr/bin/pokeget
-sudo chmod +x /usr/bin/pokeget
-```
-
-#### Using git
-
-You can also clone the repository and then run the script from the directory you cloned it in, in which case you can run `git pull` to update it if you haven't moved the script to a different directory, or you can run `make install`.
-
-#### PATH issues *(pokeget not found when doing a local install)*
-
-If pokeget is not found after doing a user installation, then do a system wide installation, because this usually means `~/.local/bin` is not added to PATH.
-
-If you want to add `~/.local/bin` to PATH append `export PATH="$HOME/.local/bin:$PATH"` to your shells rc file. For example you can run `echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc` if you use bash.
+You can go to [INSTALLING.md](INSTALLING.md) for instructions.
 
 ## Uninstallation
 
@@ -142,7 +93,7 @@ To install pokeget, you will need [cURL](https://curl.se/) if you don't clone th
 
 All dependencies are usually installed by default on most Linux distros, as this script is designed to run on [GNU](https://www.gnu.org/)/[Linux](https://kernel.org/).
 
-It should also be able to run on macOS, however it has not been tested yet.
+pokeget-lite should also be able to run on macOS, however it has not been tested yet.
 
 *If you test it on **macOS**/**other non [Linux](https://kernel.org/) systems** you can open an issue with your results and they will be added in this section of the README.*
 
@@ -201,9 +152,9 @@ pokemon-colorscripts is still a really cool program, but pokeget does fix some o
 
 - [x] Add support for selecting random pokemon and random pokemon from specific generations.
 
-- [ ] Add support for multiple pokemon at once side by side.
+- [ ] Make an official macOS port
 
-- [x] Add support for getting sprites from [PokeAPI](https://github.com/PokeAPI)
+- [ ] Move sprites to an external repository
 
 ## Known issues
 
