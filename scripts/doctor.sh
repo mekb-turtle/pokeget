@@ -29,7 +29,7 @@ fi
 
 if check_cmd pokeget; then
   if [ -f "$HOME/.local/bin/pokeget" ]; then
-    echo -e "${RED}[!]${RESET} pokeget found, but is not in PATH. You need to add ${BOLD}export PATH=\"\$HOME/.local/bin:\$PATH\"${RESET} to your shells rc file."
+    echo -e "${RED}[!]${RESET} pokeget found, but not in PATH. You need to add ${BOLD}export PATH=\"\$HOME/.local/bin:\$PATH\"${RESET} to your shells rc file."
   else
     echo -e "${RED}[!]${RESET} pokeget not found."
   fi
@@ -43,3 +43,4 @@ echo -e "${CYAN}[!]${RESET} Running $PRETTY_NAME"
 echo -e "${CYAN}[!]${RESET} Shells [
 $(cat /etc/shells)"
 echo -e "]"
+exit 0
