@@ -136,11 +136,13 @@ if [ "$1" == "" ]; then
   echo -e "${CYAN}[!]${RESET} Use ${BOLD}pokeget help${RESET} to see usage."
   exit 0
 
+# Version command
+
 elif [ "$1" == "version" ]; then
   echo -e "${CYAN}[!]${RESET} pokeget 1.2.2 ${BASH_SOURCE[0]}"
   exit 0
 
-# Help Command
+# Help command
 
 elif [ "$1" == "help" ]; then
   echo -e "${BOLD}pokeget${RESET} [flags] <pokemon ID/pokemon name>"
@@ -169,7 +171,6 @@ elif [ "$1" == "help" ]; then
   exit 0
 
 elif [ "$1" == "update" ]; then
-
   # Check for deb/rpm in order to prevent any issues.
 
   if check_for_deb || check_for_rpm; then
@@ -194,8 +195,9 @@ elif [ "$1" == "update" ]; then
   echo -e "${GREEN}[!]${RESET} Updated pokeget."
   exit 0
 
-elif [ "$1" == "uninstall" ]; then
+# Uninstall command
 
+elif [ "$1" == "uninstall" ]; then
   # Check for deb/rpm in order to prevent any issues.
 
   if check_for_deb || check_for_rpm; then
@@ -205,12 +207,14 @@ elif [ "$1" == "uninstall" ]; then
 
   bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/uninstall.sh)
 
-elif [ "$1" == "doctor" ]; then
+# Doctor command
 
+elif [ "$1" == "doctor" ]; then
   bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/doctor.sh)
 
-else
+# Get pokemon
 
+else
   # Generate random number
 
   if [ "${randomGens[0]}" != "" ]; then
