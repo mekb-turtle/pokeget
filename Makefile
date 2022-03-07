@@ -10,46 +10,46 @@ zipall:
 	@make ziprpm
 
 ziptar:
-	@-rm output/*.tar
-	@-mkdir output
+	@-rm -v output/*.tar
+	@-mkdir -v output
 
 	@echo "Making source tarballs..."
 	@tar cvf output/pokeget_$$VERSION-src.tar Makefile pokeget 
 	@tar cvf output/pokeget-lite_$$VERSION-src.tar Makefile pokeget
 
 zipdeb:
-	@-rm output/*.deb
-	@-mkdir output
+	@-rm -v output/*.deb
+	@-mkdir -v output
 
 	@echo "Making .deb package..."
 
-	@rm -rf output/pokeget_$$VERSION
-	@mkdir output/pokeget_$$VERSION
+	@rm -v -rf output/pokeget_$$VERSION
+	@mkdir -v output/pokeget_$$VERSION
 
 	@echo "Copying over script..."
 
-	@mkdir -p output/pokeget_$$VERSION/usr/bin
-	@cp pokeget output/pokeget_$$VERSION/usr/bin
+	@mkdir -v -p output/pokeget_$$VERSION/usr/bin
+	@cp -v pokeget output/pokeget_$$VERSION/usr/bin
 
 	@echo "Generating metadata..."
 	
-	@mkdir -p output/pokeget_$$VERSION/DEBIAN
+	@mkdir -v -p output/pokeget_$$VERSION/DEBIAN
 	@./metadata/control > output/pokeget_$$VERSION/DEBIAN/control
-	@cp metadata/postinst output/pokeget_$$VERSION/DEBIAN/postinst
+	@cp -v metadata/postinst output/pokeget_$$VERSION/DEBIAN/postinst
 
 	@echo "Building final .deb file..."
 
-	@chmod 775 output/pokeget_$$VERSION/DEBIAN/postinst
-	@dpkg-deb --build --root-owner-group output/pokeget_$$VERSION
+	@chmod 775 -v output/pokeget_$$VERSION/DEBIAN/postinst
+	@dpkg-deb -v --build --root-owner-group output/pokeget_$$VERSION
 
 	@echo "Cleaning up..."
 
-	@rm -rf output/pokeget_$$VERSION
+	@rm -v -rf output/pokeget_$$VERSION
 
 ziprpm:
-	@-rm output/*.rpm
-	@-rm -rf $$HOME/rpmbuild
-	@-mkdir output
+	@-rm -v output/*.rpm
+	@-rm -v -rf $$HOME/rpmbuild
+	@-mkdir -v output
 
 	@echo "Making .rpm package..."
 
@@ -59,10 +59,10 @@ ziprpm:
 
 	@echo "Making .tar archive..."
 
-	@mkdir pokeget-$$VERSION
-	@cp pokeget pokeget-$$VERSION
+	@mkdir -v pokeget-$$VERSION
+	@cp -v pokeget pokeget-$$VERSION
 	@tar cvf $$HOME/rpmbuild/SOURCES/pokeget-$$VERSION.tar pokeget-$$VERSION
-	@rm -rf pokeget-$$VERSION
+	@rm -v -rf pokeget-$$VERSION
 
 	@echo "Generating metadata..."
 
@@ -75,24 +75,24 @@ ziprpm:
 
 	@echo "Cleaning up..."
 
-	@rm -rf $$HOME/rpmbuild
+	@rm -v -rf $$HOME/rpmbuild
 
 install:
-	@mkdir -p $(PREFIX)/bin
-	@cp -p pokeget $(PREFIX)/bin/pokeget
-	@chmod +x $(PREFIX)/bin/pokeget
+	@mkdir -v -p $(PREFIX)/bin
+	@cp -v -p pokeget $(PREFIX)/bin/pokeget
+	@chmod -v +x $(PREFIX)/bin/pokeget
 
 uninstall:
-	@rm -rf $(PREFIX)/bin/pokeget
+	@rm -v -rf $(PREFIX)/bin/pokeget
 
 clean:
-	@-rm -rf output
-	@-rm -rf $$HOME/rpmbuild
-	@-rm -rf .flatpak-builder
-	@-rm -rf build-dir
+	@-rm -v -rf output
+	@-rm -v -rf $$HOME/rpmbuild
+	@-rm -v -rf .flatpak-builder
+	@-rm -v -rf build-dir
 
 pathadd:
-	@export PATH="$$HOME/.local/bin:$$PATH"' >> ~/.profile
+	@echo 'export PATH="$$HOME/.local/bin:$$PATH"' >> ~/.profile
 	@test -f ~/.bashrc && echo 'export PATH="$$HOME/.local/bin:$$PATH"' >> ~/.bashrc
 	@test -f ~/.zshrc && echo 'export PATH="$$HOME/.local/bin:$$PATH"' >> ~/.zshrc
 
