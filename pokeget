@@ -33,7 +33,7 @@ function check_for_flatpak {
   fi
 }
 
-# Do stuff based on input
+# Check if the input was a command
 
 case $1 in
 
@@ -98,7 +98,7 @@ update)
 
   # Check where to move it & wether it's needed to use sudo
 
-  if [[ "${BASH_SOURCE[0]}" == *"$HOME"* ]] || [ "$USER" == "root" ]; then
+  if [ "$(stat --format '%U' "${BASH_SOURCE[0]}")" == "$USER" ]; then
     mv /tmp/pokeget "${BASH_SOURCE[0]}"
   else
     sudo mv /tmp/pokeget "${BASH_SOURCE[0]}"
@@ -111,7 +111,7 @@ update)
 # Uninstall command
 
 uninstall)
-  # Check for deb/rpm in order to prevent any issues.
+  # Check for deb/rpm/flatpak in order to prevent any issues.
 
   if check_for_deb || check_for_rpm || check_for_flatpak; then
     echo -e "${RED}[!]${RESET} It looks like you installed pokeget with dpkg/rpm/flatpak, please uninstall pokeget with them as well to avoid any issues."
