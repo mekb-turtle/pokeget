@@ -8,7 +8,6 @@ zipall:
 	@make ziptar
 	@make zipdeb
 	@make ziprpm
-	@make zipflatpak
 
 ziptar:
 	@-rm output/*.tar
