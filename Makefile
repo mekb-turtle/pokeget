@@ -73,6 +73,12 @@ ziprpm:
 	@rpmbuild -bb $$HOME/rpmbuild/SPECS/pokeget.spec
 	@mv $$HOME/rpmbuild/RPMS/noarch/pokeget-$$VERSION-1.noarch.rpm output/pokeget_$$VERSION.rpm
 
+	@echo "Building .src.rpm file..."
+
+	@rpmbuild -bs $$HOME/rpmbuild/SPECS/pokeget.spec
+	@mv $$HOME/rpmbuild/SRPMS/pokeget-$$VERSION-1.src.rpm other/pokeget.src.rpm
+	@cp $$HOME/rpmbuild/SPECS/pokeget.spec other/pokeget.spec
+
 	@echo "Cleaning up..."
 
 	@rm -v -rf $$HOME/rpmbuild
