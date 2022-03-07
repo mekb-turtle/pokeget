@@ -78,31 +78,6 @@ ziprpm:
 
 	@rm -rf $$HOME/rpmbuild
 
-zipflatpak:
-	@-mkdir output
-	@-rm -rf output/pokeget-flatpak-$$VERSION
-
-	@echo "Making flatpak..."
-
-	@mkdir output/pokeget-flatpak-tmp-$$VERSION
-	
-	@echo "Copying over script..."
-	
-	@cp pokeget output/pokeget-flatpak-tmp-$$VERSION
-
-	@echo "Generating metadata..."
-
-	@./metadata/org.flatpak.pokeget.yml > output/pokeget-flatpak-tmp-$$VERSION/org.flatpak.pokeget.yml
-
-	@echo "Building final flatpak..."
-
-	@mkdir output/pokeget-flatpak-$$VERSION
-	@flatpak-builder output/pokeget-flatpak-$$VERSION output/pokeget-flatpak-tmp-$$VERSION/org.flatpak.pokeget.yml
-
-	@echo "Cleaning up..."
-
-	@rm -rf output/pokeget-flatpak-tmp-$$VERSION
-
 install:
 	@mkdir -p $(PREFIX)/bin
 	@cp -p pokeget $(PREFIX)/bin/pokeget
