@@ -24,127 +24,36 @@ function check_for_rpm {
   command rpm -q pokeget >/dev/null 2>&1
 }
 
-# Configurable
-
-small=false      # The default size value.
-shiny=false      # The default shiny value.
-back=false       # The default back value.
-debug=false      # The default debug value.
-variant=""       # The default variant value.
-randomGens=()    # The default randomGens value.
-getVanilla=false # The default getfromPokeAPI value.
-partner=false    # The default partner value.
-
-# Make config file.
-
-if [ ! -d "$HOME/.config/pokeget" ]; then
-  mkdir "$HOME/.config/pokeget"
-fi
-if [ ! -f "$HOME/.config/pokeget/pokeget.conf" ]; then
-  printf "# Determines wether the sprite is the small (pc/box) sprite. Doesn't work with 'shiny' and 'back'.
-small=false
-
-# Determines wether the sprite will use the shiny variant.
-shiny=false
-
-# Determines wether the sprite will be facing backwards.
-back=false
-
-# The variant of the sprite. Determines megas, pokemon specific things like arceus, alolan forms, etc...
-variant=\"\"
-
-# EXPERIMENTAL
-# Use vanilla sprites, not pokemon reborn sprites. This will make shinies normal and small sprites look better, but it will remove back sprites and variants.
-getVanilla=false
-" >"$HOME/.config/pokeget/pokeget.conf"
-fi
-
-# Import config file
-
-source "$HOME/.config/pokeget/pokeget.conf"
-
-# Non-configurable variables
-
-variantAsk=false
-randomAsk=false
-rawId=0
-
-# Get Flags & Input
-
-for var in "$@"; do
-  case $var in
-  -small)
-    small=true
-    ;;
-  -big)
-    small=false
-    ;;
-  -shiny)
-    shiny=true
-    ;;
-  -notshiny)
-    shiny=false
-    ;;
-  -back)
-    back=true
-    ;;
-  -front)
-    back=false
-    ;;
-  -variant)
-    variantAsk=true
-    ;;
-  -debug)
-    debug=true
-    ;;
-  -random)
-    randomAsk=true
-    ;;
-  -partner)
-    partner=true
-    ;;
-  -*)
-    echo -e "${RED}[!]${RESET} Invalid flag"
-    exit
-    ;;
-  *)
-
-    # Check if the variant flag has been called to set the variant value
-
-    if [ $variantAsk == true ]; then
-      variant="$var"
-      variantAsk=false
-
-    # Check if the random flag has been called to set the random value
-
-    elif [ $randomAsk == true ]; then
-
-      # Splits $var with ',' as the seperator and assigns it to randomGens
-      IFS=',' read -ra randomGens <<<"$var"
-
-    # If no flags which require another value have been called, set the raw ID
-    else
-      rawId=$var
-    fi
-    ;;
-  esac
-done
+function check_for_flatpak {
+  result=$(flatpak list --app)
+  if [[ $result == *"pokeget"* ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
 
 # Do stuff based on input
 
-if [ "$1" == "" ]; then
+case $1 in
+
+# No command
+
+"")
   echo -e "${CYAN}[!]${RESET} Use ${BOLD}pokeget help${RESET} to see usage."
   exit 0
+  ;;
 
 # Version command
 
-elif [ "$1" == "version" ]; then
-  echo -e "${CYAN}[!]${RESET} pokeget 1.2.2 ${BASH_SOURCE[0]}"
+version)
+  echo -e "${CYAN}[!]${RESET} pokeget 1.3 ${BASH_SOURCE[0]}"
   exit 0
+  ;;
 
 # Help command
 
-elif [ "$1" == "help" ]; then
+help)
   echo -e "${BOLD}pokeget${RESET} [flags] <pokemon ID/pokemon name>"
   echo -e "${BOLD}PS${RESET}: This program requires internet to work."
   echo ""
@@ -169,12 +78,15 @@ elif [ "$1" == "help" ]; then
   echo "  All sprites and art are originally made by gamefreak, so huge props to them."
   echo "  Code written by Talwat in bash."
   exit 0
+  ;;
 
-elif [ "$1" == "update" ]; then
+# Update command
+
+update)
   # Check for deb/rpm in order to prevent any issues.
 
-  if check_for_deb || check_for_rpm; then
-    echo -e "${RED}[!]${RESET} It looks like you installed pokeget with dpkg/rpm, please update pokeget with them as well to avoid any issues."
+  if check_for_deb || check_for_rpm || check_for_flatpak; then
+    echo -e "${RED}[!]${RESET} It looks like you installed pokeget with dpkg/rpm/flatpak, please update pokeget with them as well to avoid any issues."
     exit 1
   fi
 
@@ -194,27 +106,139 @@ elif [ "$1" == "update" ]; then
 
   echo -e "${GREEN}[!]${RESET} Updated pokeget."
   exit 0
+  ;;
 
 # Uninstall command
 
-elif [ "$1" == "uninstall" ]; then
+uninstall)
   # Check for deb/rpm in order to prevent any issues.
 
-  if check_for_deb || check_for_rpm; then
-    echo -e "${RED}[!]${RESET} It looks like you installed pokeget with dpkg/rpm, please uninstall pokeget with them as well to avoid any issues."
+  if check_for_deb || check_for_rpm || check_for_flatpak; then
+    echo -e "${RED}[!]${RESET} It looks like you installed pokeget with dpkg/rpm/flatpak, please uninstall pokeget with them as well to avoid any issues."
     exit 1
   fi
 
   bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/uninstall.sh)
+  exit 0
+  ;;
 
 # Doctor command
 
-elif [ "$1" == "doctor" ]; then
+doctor)
   bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/doctor.sh)
+  exit 0
+  ;;
 
 # Get pokemon
 
-else
+*)
+
+  # Configurable variables
+
+  small=false      # The default size value.
+  shiny=false      # The default shiny value.
+  back=false       # The default back value.
+  debug=false      # The default debug value.
+  variant=""       # The default variant value.
+  randomGens=()    # The default randomGens value.
+  getVanilla=false # The default getfromPokeAPI value.
+  partner=false    # The default partner value.
+
+  # Non-configurable variables
+
+  variantAsk=false
+  randomAsk=false
+  rawId=0
+
+  # Make config file.
+
+  if [ ! -d "$HOME/.config/pokeget" ]; then
+    mkdir "$HOME/.config/pokeget"
+  fi
+  if [ ! -f "$HOME/.config/pokeget/pokeget.conf" ]; then
+    echo "# Determines wether the sprite is the small (pc/box) sprite. Doesn't work with 'shiny' and 'back'.
+small=false
+
+# Determines wether the sprite will use the shiny variant.
+shiny=false
+
+# Determines wether the sprite will be facing backwards.
+back=false
+
+# The variant of the sprite. Determines megas, pokemon specific things like arceus, alolan forms, etc...
+variant=\"\"
+
+# EXPERIMENTAL
+# Use vanilla sprites, not pokemon reborn sprites. This will make shinies normal and small sprites look better, but it will remove back sprites and variants.
+getVanilla=false
+" >"$HOME/.config/pokeget/pokeget.conf"
+  fi
+
+  # Import config file
+
+  source "$HOME/.config/pokeget/pokeget.conf"
+
+  # Get Flags & Input
+
+  for var in "$@"; do
+    case $var in
+    -small)
+      small=true
+      ;;
+    -big)
+      small=false
+      ;;
+    -shiny)
+      shiny=true
+      ;;
+    -notshiny)
+      shiny=false
+      ;;
+    -back)
+      back=true
+      ;;
+    -front)
+      back=false
+      ;;
+    -variant)
+      variantAsk=true
+      ;;
+    -debug)
+      debug=true
+      ;;
+    -random)
+      randomAsk=true
+      ;;
+    -partner)
+      partner=true
+      ;;
+    -*)
+      echo -e "${RED}[!]${RESET} Invalid flag"
+      exit
+      ;;
+    *)
+
+      # Check if the variant flag has been called to set the variant value
+
+      if [ $variantAsk == true ]; then
+        variant="$var"
+        variantAsk=false
+
+      # Check if the random flag has been called to set the random value
+
+      elif [ $randomAsk == true ]; then
+
+        # Splits $var with ',' as the seperator and assigns it to randomGens
+        IFS=',' read -ra randomGens <<<"$var"
+
+      # If no flags which require another value have been called, set the raw ID
+      else
+        rawId=$var
+      fi
+      ;;
+    esac
+  done
+
   # Generate random number
 
   if [ "${randomGens[0]}" != "" ]; then
@@ -347,4 +371,5 @@ else
     echo -e "$r$RESET"
     exit 0
   fi
-fi
+  ;;
+esac
