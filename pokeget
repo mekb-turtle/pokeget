@@ -353,7 +353,7 @@ getVanilla=false
 
   # Put together the final URL
 
-  url="https://raw.githubusercontent.com/talwat/pokeget/main/${folderName}/${size}/${id}.txt"
+  url="https://raw.githubusercontent.com/talwat/pokeget-sprites/main/${folderName}/${size}/${id}.txt"
 
   rawId=$1
   # Get final sprite using cURL
