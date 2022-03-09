@@ -93,9 +93,9 @@ To install pokeget, you will need [cURL](https://curl.se/) if you don't clone th
 
 All dependencies are usually installed by default on most Linux distros, as this script is designed to run on [GNU](https://www.gnu.org/)/[Linux](https://kernel.org/).
 
-pokeget-lite should also be able to run on macOS, however it has not been tested yet.
+If you run it on macOS/darwin certain features will be disabled, but most things will work fine.
 
-*If you test it on **macOS**/**other non [Linux](https://kernel.org/) systems** you can open an issue with your results and they will be added in this section of the README.*
+*If you test it on **other non [GNU](https://www.gnu.org/)/[Linux](https://kernel.org/) systems** you can open an issue with your results and they will be added in this section of the README.*
 
 ## pokeget-lite
 
