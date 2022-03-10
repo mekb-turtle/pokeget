@@ -47,7 +47,7 @@ zipdeb:
 
 	@echo "Building final .deb file..."
 
-	@chmod 775 -v output/pokeget_$$VERSION/DEBIAN/postinst
+	@chmod -v 775 output/pokeget_$$VERSION/DEBIAN/postinst
 	@dpkg-deb -v --build --root-owner-group output/pokeget_$$VERSION
 
 	@echo "Cleaning up..."
