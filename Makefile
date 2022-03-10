@@ -1,4 +1,4 @@
-PREFIX = ~/.local/
+PREFIX = ~/.local
 
 all:
 	@echo "do 'export VERSION=<version>' to select the version"
@@ -8,6 +8,14 @@ zipall:
 	@make ziptar
 	@make zipdeb
 	@make ziprpm
+	@make zipbrew
+
+zipbrew:
+	@-rm -v output/pokeget.rb
+	@-mkdir -v output
+	
+	@echo "Generating homebrew formula..."
+	@./metadata/pokeget.rb > output/pokeget.rb
 
 ziptar:
 	@-rm -v output/*.tar

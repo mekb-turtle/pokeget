@@ -24,7 +24,11 @@ function check_for_rpm {
   command rpm -q pokeget >/dev/null 2>&1
 }
 
-function darwin_check {
+function check_for_brew {
+  command brew list pokeget >/dev/null 2>&1
+}
+
+function check_darwin {
   # Check for macOS/darwin
 
   if [[ $OSTYPE == *'darwin'* ]]; then
@@ -57,7 +61,7 @@ version)
 # Help command
 
 help)
-  echo -e "${BOLD}pokeget${RESET} [flags] <pokemon ID/pokemon name>"
+  echo -e "${BOLD}pokeget${RESET} [flags] <pokemon pkmnId/pokemon name>"
   echo -e "${BOLD}PS${RESET}: This program requires internet to work."
   echo ""
   echo -e "${BOLD}${CYAN}Commands${RESET}"
@@ -88,13 +92,13 @@ help)
 update)
   # Check for macOS/darwin
 
-  if darwin_check "please update pokeget manually"; then
+  if check_darwin "please update pokeget manually"; then
     exit 1
   fi
 
   # Check for deb/rpm in order to prevent any issues.
 
-  if check_for_deb || check_for_rpm; then
+  if check_for_deb || check_for_rpm || check_for_brew; then
     echo -e "${RED}[!]${RESET} It looks like you installed pokeget with dpkg/rpm, please update pokeget with them as well to avoid any issues."
     exit 1
   fi
@@ -122,7 +126,7 @@ update)
 uninstall)
   # Check for deb/rpm in order to prevent any issues.
 
-  if check_for_deb || check_for_rpm; then
+  if check_for_deb || check_for_rpm || check_for_brew; then
     echo -e "${RED}[!]${RESET} It looks like you installed pokeget with dpkg/rpm, please uninstall pokeget with them as well to avoid any issues."
     exit 1
   fi
@@ -157,7 +161,7 @@ doctor)
 
   variantAsk=false
   randomAsk=false
-  rawId=0
+  rawPkmnId=0
 
   # Make config file.
 
@@ -216,7 +220,7 @@ getVanilla=false
       debug=true
       ;;
     -random)
-      if darwin_check "this feature is not supported on macOS (darwin), sorry!"; then
+      if check_darwin "this feature is not supported on macOS (darwin), sorry!"; then
         exit 1
       fi
       randomAsk=true
@@ -243,9 +247,9 @@ getVanilla=false
         # Splits $var with ',' as the seperator and assigns it to randomGens
         IFS=',' read -ra randomGens <<<"$var"
 
-      # If no flags which require another value have been called, set the raw ID
+      # If no flags which require another value have been called, set the raw pokemon ID
       else
-        rawId=$var
+        rawPkmnId=$var
       fi
       ;;
     esac
@@ -281,31 +285,31 @@ getVanilla=false
 
     # Get a random pokemon from the random generation
 
-    rawId=$(shuf -i "${randomGenValues[$finalRandomGen]}" -n 1)
+    rawPkmnId=$(shuf -i "${randomGenValues[$finalRandomGen]}" -n 1)
   fi
 
-  # Check if the input is a national dex ID or a pokemon name
+  # Check if the input is a national dex pkmnId or a pokemon name
 
-  if [[ $rawId =~ ^[0-9]+$ ]]; then
+  if [[ $rawPkmnId =~ ^[0-9]+$ ]]; then
     isPkmnName=false
   else
     isPkmnName=true
   fi
 
-  # Parse the ID/Name
+  # Parse the pkmnId/Name
 
   if [ $isPkmnName == false ]; then
-    id=$rawId
-    length=${#id}
+    pkmnId=$rawPkmnId
+    length=${#pkmnId}
 
-    # Loop until the pokemon ID's length is three. This makes '3' '003', '25' '025', etc...
+    # Loop until the pokemon pkmnId's length is three. This makes '3' '003', '25' '025', etc...
 
     while ((length < 3)); do
-      id=0$id
-      length=${#id}
+      pkmnId=0$pkmnId
+      length=${#pkmnId}
     done
   else
-    id=$(echo "$rawId" | tr '[:upper:]' '[:lower:]')
+    pkmnId=$(echo "$rawPkmnId" | tr '[:upper:]' '[:lower:]')
   fi
 
   # Disable certain options if getVanilla is true.
@@ -318,7 +322,7 @@ getVanilla=false
   # Options that work with any config
 
   if [ $shiny == true ]; then
-    id="${id}s"
+    pkmnId="${pkmnId}s"
   fi
 
   # Apply values from flags & config file.
@@ -330,11 +334,11 @@ getVanilla=false
   else
     size="big"
     if [ $back == true ]; then
-      id="${id}b"
+      pkmnId="${pkmnId}b"
     fi
   fi
   if [ "$variant" != "" ]; then
-    id="${id}_${variant}"
+    pkmnId="${pkmnId}_${variant}"
   fi
 
   folderName="pokemon"
@@ -345,7 +349,7 @@ getVanilla=false
     folderName="${folderName}_vanilla"
   fi
 
-  # Append to folder name based on wether input was a pokemon name or ID
+  # Append to folder name based on wether input was a pokemon name or a pokemon ID
 
   if [ $isPkmnName == true ]; then
     folderName="${folderName}_named"
@@ -353,19 +357,19 @@ getVanilla=false
 
   # Put together the final URL
 
-  url="https://raw.githubusercontent.com/talwat/pokeget-sprites/main/${folderName}/${size}/${id}.txt"
+  url="https://raw.githubusercontent.com/talwat/pokeget-sprites/main/${folderName}/${size}/${pkmnId}.txt"
 
-  rawId=$1
+  rawPkmnId=$1
   # Get final sprite using cURL
 
-  rSolo=$(curl -s -L "${url}")
+  responseSolo=$(curl -s -L "${url}")
 
   # Put another sprite next to the first one if partner is true
 
   if [ $partner == true ]; then
-    r=$(paste <(echo "${rSolo}") <(echo "${rSolo}"))
+    response=$(paste <(echo "${responseSolo}") <(echo "${responseSolo}"))
   else
-    r=$rSolo
+    response=$responseSolo
   fi
 
   # Debug info
@@ -376,11 +380,11 @@ getVanilla=false
 
   # Print output or 404 message
 
-  if [[ $r == *"404"* ]]; then
+  if [[ $response == *"404"* ]]; then
     echo -e "${RED}[!]${RESET} Pokemon could not be found (404 Error)$RESET"
     exit 1
   else
-    echo -e "$r$RESET"
+    echo -e "$response$RESET"
     exit 0
   fi
   ;;

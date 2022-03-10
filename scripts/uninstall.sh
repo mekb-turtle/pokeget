@@ -3,7 +3,7 @@
 # Color variables
 
 GREEN="\x1B[32m"
-ORANGE="\e[33m"
+ORANGE="\x1B[33m"
 RESET="\x1B[0m"
 
 # Y or N function
