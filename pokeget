@@ -54,7 +54,7 @@ case $1 in
 # Version command
 
 version)
-  echo -e "${CYAN}[!]${RESET} pokeget 1.4 ${BASH_SOURCE[0]}"
+  echo -e "${CYAN}[!]${RESET} pokeget 1.4.1 ${BASH_SOURCE[0]}"
   exit 0
   ;;
 
