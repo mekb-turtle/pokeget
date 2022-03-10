@@ -112,3 +112,7 @@ pathadd:
 
 getpokedex:
 	@./scripts/get_pokedex.sh
+
+getchecksum:
+	@curl -s https://github.com/talwat/pokeget/releases/download/$$VERSION/pokeget_$$VERSION-src.tar --output /tmp/pokeget-tarball-tmp.tar
+	@sha256sum /tmp/pokeget-tarball-tmp.tar

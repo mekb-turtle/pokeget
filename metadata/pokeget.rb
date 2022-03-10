@@ -9,6 +9,7 @@ class Pokeget < Formula
   license \"MIT\"
   head \"https://github.com/talwat/pokeget.git\", branch: \"main\"
 
+  depends_on \"make\" => :build
   on_macos do
     depends_on \"coreutils\"
   end
