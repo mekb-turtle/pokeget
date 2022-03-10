@@ -8,6 +8,7 @@
   - [Debian & Debian derivatives *Ubuntu, Linux mint, etc...*](#debian--debian-derivatives-ubuntu-linux-mint-etc)
   - [Red hat & rpm distros *Fedora, CentOS, OpenSUSE, etc...*](#red-hat--rpm-distros-fedora-centos-opensuse-etc)
   - [Other distros & macOS](#other-distros--macos)
+    - [macOS](#macos)
     - [Install commands *recommended*](#install-commands-recommended)
     - [Using git](#using-git)
     - [PATH issues *(pokeget not found when doing a local install)*](#path-issues-pokeget-not-found-when-doing-a-local-install)
@@ -31,6 +32,12 @@ In true debian fashion this is the most stable option.
 You can download the .rpm package from the [releases tab](https://github.com/talwat/pokeget/releases) and then use rpm/your distros main package manager to install pokeget. If you do that, please uninstall & update pokeget using rpm/your distros main package manager.
 
 ## Other distros & macOS
+
+### macOS
+
+If you use macOS, you can follow the normal install commands however be sure to install the [GNU](https://gnu.org) coreutils by doing `brew install coreutils`.
+
+If you don't have [homebrew](http://brew.sh/) installed, you can get it [here](http://brew.sh/).
 
 ### Install commands *recommended*
 
