@@ -27,6 +27,7 @@ pokeget is a bash script you can use to display cool sprites of pokemon in your 
   - [Dependencies](#dependencies)
   - [pokeget-lite](#pokeget-lite)
   - [Contributors](#contributors)
+  - [Contributing & developing](#contributing--developing)
   - [FAQ](#faq)
     - [Hey, isn't this similar to pokemon-colorscripts?](#hey-isnt-this-similar-to-pokemon-colorscripts)
       - [pokeget example](#pokeget-example)
@@ -116,6 +117,10 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 - [acxz](https://github.com/acxz) Fixing a small spacing issue, and making feature requests.
 
 - [crstian19](https://github.com/crstian19) Submitted pokeget to the AUR *Arch User Repository*.
+
+## Contributing & developing
+
+You can go to [DEVELOPING.md](DEVELOPING.md) for guidelines and developer documentation.
 
 ## FAQ
 
