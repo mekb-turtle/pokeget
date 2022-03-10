@@ -157,9 +157,9 @@ pokemon-colorscripts is still a really cool program, but pokeget does fix some o
 
 - [x] Add support for selecting random pokemon and random pokemon from specific generations.
 
-- [ ] Make an official macOS port
+- [x] Make an official macOS port
 
-- [ ] Move sprites to an external repository
+- [x] Move sprites to an external repository
 
 ## Known issues
 
