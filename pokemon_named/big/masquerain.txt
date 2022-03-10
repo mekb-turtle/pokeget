@@ -68,3 +68,4 @@
                                                           [38;2;106;131;172m██[38;2;106;131;172m██                                                                
                                                           [38;2;106;131;172m██[38;2;24;74;98m██                                                                
                                                           [38;2;106;131;172m██                                                                  
+[0mThese sprites are deprecated, please update pokeget as soon as possible.
