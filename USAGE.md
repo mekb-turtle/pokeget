@@ -1,5 +1,26 @@
 # pokeget Usage Page
 
+## Table of contents
+
+- [pokeget Usage Page](#pokeget-usage-page)
+  - [Table of contents](#table-of-contents)
+  - [Basic Syntax](#basic-syntax)
+  - [Special commands](#special-commands)
+    - [help](#help)
+    - [update](#update)
+    - [uninstall](#uninstall)
+  - [Flags](#flags)
+    - [-small](#-small)
+    - [-big](#-big)
+  - [-back](#-back)
+    - [-front](#-front)
+    - [-shiny](#-shiny)
+    - [-notshiny](#-notshiny)
+    - [-partner](#-partner)
+    - [-variant \<num>](#-variant-num)
+    - [-random \<gen>](#-random-gen)
+  - [Config file](#config-file)
+
 ## Basic Syntax
 
 `pokeget [flags] <pokemon national dex id>`
