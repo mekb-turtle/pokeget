@@ -9,6 +9,7 @@ zipall:
 	@make zipdeb
 	@make ziprpm
 	@make zipbrew
+	@echo "Zipped All!"
 
 zipbrew:
 	@-rm -v output/pokeget.rb
@@ -18,7 +19,7 @@ zipbrew:
 	@./metadata/pokeget.rb.sh > output/pokeget.rb
 
 	@echo "Copying pokeget.rb to formula directory..."
-	@cp output/pokeget.rb.sh Formula/pokeget.rb
+	@cp output/pokeget.rb Formula/pokeget.rb
 
 ziptar:
 	@-rm -v output/*.tar
@@ -88,7 +89,7 @@ ziprpm:
 
 	@rpmbuild -bs $$HOME/rpmbuild/SPECS/pokeget.spec
 	@mv $$HOME/rpmbuild/SRPMS/pokeget-$$VERSION-1.src.rpm other/pokeget.src.rpm
-	@cp $$HOME/rpmbuild/SPECS/pokeget.spec.sh other/pokeget.spec
+	@cp $$HOME/rpmbuild/SPECS/pokeget.spec other/pokeget.spec
 
 	@echo "Cleaning up..."
 
