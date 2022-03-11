@@ -63,7 +63,7 @@ Makes the pokemon the front sprite. in the pokemon games, this would be the spri
 
 ### -shiny
 
-Dictates wether the pokemon is shiny. It only works on big sprites.
+Dictates wether the pokemon is shiny. It works with all sprites.
 
 *Note: the shiny colors are from pokemon reborn, so a lot of them are completely different than the normal shiny colors.*
 
