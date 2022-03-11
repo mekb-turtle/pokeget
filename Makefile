@@ -106,8 +106,6 @@ uninstall:
 clean:
 	@-rm -v -rf output
 	@-rm -v -rf $$HOME/rpmbuild
-	@-rm -v -rf .flatpak-builder
-	@-rm -v -rf build-dir
 
 pathadd:
 	@echo 'export PATH="$$HOME/.local/bin:$$PATH"' >> ~/.profile
