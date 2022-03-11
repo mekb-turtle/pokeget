@@ -15,10 +15,10 @@ zipbrew:
 	@-mkdir -v output
 	
 	@echo "Generating homebrew formula..."
-	@./metadata/pokeget.rb > output/pokeget.rb
+	@./metadata/pokeget.rb.sh > output/pokeget.rb
 
 	@echo "Copying pokeget.rb to formula directory..."
-	@cp output/pokeget.rb Formula/pokeget.rb
+	@cp output/pokeget.rb.sh Formula/pokeget.rb
 
 ziptar:
 	@-rm -v output/*.tar
@@ -45,8 +45,8 @@ zipdeb:
 	@echo "Generating metadata..."
 	
 	@mkdir -v -p output/pokeget_$$VERSION/DEBIAN
-	@./metadata/control > output/pokeget_$$VERSION/DEBIAN/control
-	@cp -v metadata/postinst output/pokeget_$$VERSION/DEBIAN/postinst
+	@./metadata/control.sh > output/pokeget_$$VERSION/DEBIAN/control
+	@cp -v metadata/postinst.sh output/pokeget_$$VERSION/DEBIAN/postinst
 
 	@echo "Building final .deb file..."
 
@@ -77,7 +77,7 @@ ziprpm:
 
 	@echo "Generating metadata..."
 
-	@./metadata/spec > $$HOME/rpmbuild/SPECS/pokeget.spec
+	@./metadata/spec.sh > $$HOME/rpmbuild/SPECS/pokeget.spec
 
 	@echo "Building final .rpm file..."
 
@@ -88,7 +88,7 @@ ziprpm:
 
 	@rpmbuild -bs $$HOME/rpmbuild/SPECS/pokeget.spec
 	@mv $$HOME/rpmbuild/SRPMS/pokeget-$$VERSION-1.src.rpm other/pokeget.src.rpm
-	@cp $$HOME/rpmbuild/SPECS/pokeget.spec other/pokeget.spec
+	@cp $$HOME/rpmbuild/SPECS/pokeget.spec.sh other/pokeget.spec
 
 	@echo "Cleaning up..."
 
