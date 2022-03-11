@@ -17,6 +17,9 @@ zipbrew:
 	@echo "Generating homebrew formula..."
 	@./metadata/pokeget.rb > output/pokeget.rb
 
+	@echo "Copying pokeget.rb to formula directory..."
+	@cp output/pokeget.rb Formula/pokeget.rb
+
 ziptar:
 	@-rm -v output/*.tar
 	@-mkdir -v output
