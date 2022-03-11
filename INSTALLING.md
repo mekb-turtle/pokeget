@@ -7,8 +7,8 @@
   - [Arch linux & Arch linux derivatives *Manjaro, EndeavorOS, etc...*](#arch-linux--arch-linux-derivatives-manjaro-endeavoros-etc)
   - [Debian & Debian derivatives *Ubuntu, Linux mint, etc...*](#debian--debian-derivatives-ubuntu-linux-mint-etc)
   - [Red hat & rpm distros *Fedora, CentOS, OpenSUSE, etc...*](#red-hat--rpm-distros-fedora-centos-opensuse-etc)
-  - [Other distros & macOS](#other-distros--macos)
-    - [macOS](#macos)
+  - [macOS with homebrew](#macos-with-homebrew)
+  - [Other distros](#other-distros)
     - [Install commands *recommended*](#install-commands-recommended)
     - [Using git](#using-git)
     - [PATH issues *(pokeget not found when doing a local install)*](#path-issues-pokeget-not-found-when-doing-a-local-install)
@@ -31,13 +31,22 @@ In true debian fashion this is the most stable option.
 
 You can download the .rpm package from the [releases tab](https://github.com/talwat/pokeget/releases) and then use rpm/your distros main package manager to install pokeget. If you do that, please uninstall & update pokeget using rpm/your distros main package manager.
 
-## Other distros & macOS
+## macOS with homebrew
 
-### macOS
+Homebrew uses `git clone` which means that until the sprites from the main repository get removed *rendering all versions of pokeget before 1.4 broken* it might take a minute to add the tap.
 
-If you use macOS, you can follow the normal install commands however be sure to install the [GNU](https://gnu.org) coreutils by doing `brew install coreutils`.
+You can use brew to install pokeget by doing these commands:
 
-If you don't have [homebrew](http://brew.sh/) installed, you can get it [here](http://brew.sh/).
+```bash
+brew tap talwat/pokeget https://github.com/talwat/pokeget
+brew install pokeget
+```
+
+Which will add the pokeget tap and then install pokeget.
+
+This should also work if you have brew on a Linux system.
+
+## Other distros
 
 ### Install commands *recommended*
 
