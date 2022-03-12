@@ -119,7 +119,7 @@ zipglac:
 
 	@echo "Cleaning up..."
 
-	#@-rm -v -rf output/pokeget-glactmp
+	@-rm -v -rf output/pokeget-glactmp
 
 install:
 	@mkdir -p $(PREFIX)/bin
