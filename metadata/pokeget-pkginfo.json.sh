@@ -6,5 +6,5 @@ echo "{
 	\"package_description\": \"Bash script that displays cool sprites of pokemon in your terminal\",
 	\"src_tree_size\": \"20 KiB\",
 	\"exec_size\": \"10.8 KiB\",
-    \"license\": \"MIT\"
+	\"license\": \"MIT\"
 }"
