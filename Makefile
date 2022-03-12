@@ -106,6 +106,11 @@ zipglac:
 	@mkdir -v output/pokeget-glactmp
 	@./metadata/pokeget-pkginfo.json.sh > output/pokeget-glactmp/pokeget-pkginfo.json
 
+	@echo "Generating LICENSE"
+
+	@printf "# " > output/pokeget-glactmp/LICENSE.md 
+	@cat LICENSE >> output/pokeget-glactmp/LICENSE.md
+
 	@echo "Generating needed scripts..."
 	
 	@printf '#!/bin/sh\n\nmake install PREFIX="/usr"' > output/pokeget-glactmp/INSTALL.sh
@@ -115,7 +120,7 @@ zipglac:
 
 	@echo "Making final glacier tar.gz file..."
 
-	@tar vczf output/pokeget.tar.gz pokeget Makefile LICENSE -C output/pokeget-glactmp/ .
+	@tar vczf output/pokeget.tar.gz pokeget Makefile -C output/pokeget-glactmp/ .
 
 	@echo "Cleaning up..."
 
