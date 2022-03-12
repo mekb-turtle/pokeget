@@ -39,7 +39,7 @@ if [[ $USER != "root" ]]; then
     rm -rf "$HOME/.config/pokeget"
   fi
   if [ -f "/usr/bin/pokeget" ]; then
-    sudo rm "usr/bin/pokeget"
+    sudo rm "/usr/bin/pokeget"
   fi
 else
   if [ -f "/usr/bin/pokeget" ]; then

@@ -9,6 +9,7 @@ zipall:
 	@make zipdeb
 	@make ziprpm
 	@make zipbrew
+	@make zipglac
 	@echo "Zipped All!"
 
 zipbrew:
@@ -95,13 +96,38 @@ ziprpm:
 
 	@rm -v -rf $$HOME/rpmbuild
 
+zipglac:
+	@-rm -v output/*.tar.gz
+	@-rm -v -rf output/pokeget-glactmp
+	@-mkdir -v output
+
+	@echo "Generating metadata..."
+	
+	@mkdir -v output/pokeget-glactmp
+	@./metadata/pokeget-pkginfo.json.sh > output/pokeget-glactmp/pokeget-pkginfo.json
+
+	@echo "Generating needed scripts..."
+	
+	@printf '#!/bin/sh\n\nmake install PREFIX="/usr"' > output/pokeget-glactmp/INSTALL.sh
+	@printf '#!/bin/sh\n\nmake uninstall PREFIX="/usr"' > output/pokeget-glactmp/REMOVE.sh
+	@printf '#!/bin/sh\n\nmake uninstall PREFIX="/usr"\nmake install PREFIX="/usr"' > output/pokeget-glactmp/UPDATE.sh
+
+
+	@echo "Making final glacier tar.gz file..."
+
+	@tar vczf output/pokeget.tar.gz pokeget Makefile LICENSE -C output/pokeget-glactmp/ .
+
+	@echo "Cleaning up..."
+
+	#@-rm -v -rf output/pokeget-glactmp
+
 install:
-	@mkdir -v -p $(PREFIX)/bin
-	@cp -v -p pokeget $(PREFIX)/bin/pokeget
-	@chmod -v +x $(PREFIX)/bin/pokeget
+	@mkdir -p $(PREFIX)/bin
+	@cp -p pokeget $(PREFIX)/bin/pokeget
+	@chmod +x $(PREFIX)/bin/pokeget
 
 uninstall:
-	@rm -v -rf $(PREFIX)/bin/pokeget
+	@rm -rf $(PREFIX)/bin/pokeget
 
 clean:
 	@-rm -v -rf output
@@ -118,3 +144,7 @@ getpokedex:
 getchecksum:
 	@curl -s https://github.com/talwat/pokeget/releases/download/$$VERSION/pokeget_$$VERSION-src.tar --output /tmp/pokeget-tarball-tmp.tar
 	@sha256sum /tmp/pokeget-tarball-tmp.tar
+
+gitrestore:
+	@git restore Formula
+	@git restore other
