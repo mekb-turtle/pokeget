@@ -26,11 +26,10 @@ pokeget is a bash script you can use to display cool sprites of pokemon in your 
   - [Dependencies](#dependencies)
   - [pokeget-lite](#pokeget-lite)
   - [Contributors](#contributors)
-  - [Contributing & developing](#contributing--developing)
+  - [Developing](#developing)
+  - [Other projects](#other-projects)
   - [FAQ](#faq)
     - [Hey, isn't this similar to pokemon-colorscripts?](#hey-isnt-this-similar-to-pokemon-colorscripts)
-      - [pokeget example](#pokeget-example)
-      - [pokemon-colorscripts example](#pokemon-colorscripts-example)
   - [Todo](#todo)
   - [Known issues](#known-issues)
 
@@ -119,36 +118,21 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 
 - [Vagahbond](https://github.com/Vagahbond) Made pokeget automatically know wether the user wanted to get a pokemon by ID or by name.
 
-## Contributing & developing
+## Developing
 
-You can go to [DEVELOPING.md](DEVELOPING.md) for guidelines and developer documentation.
+You can go to [DEVELOPING.md](DEVELOPING.md) for developer documentation.
+
+## Other projects
+
+If theres an other project you want to see a comparison to, you can go to [OTHER_PROJECTS.md](OTHER_PROJECTS.md).
+
+If a project you think should be compared/mentioned, open an issue or a pull request and I can add a chapter about it.
 
 ## FAQ
 
 ### Hey, isn't this similar to [pokemon-colorscripts?](https://gitlab.com/phoneybadger/pokemon-colorscripts/)
 
-pokeget is not a clone of pokemon-colorscripts, nor was inspired by it in the first place.
-
-The true main difference is that pokemon-colorscripts gets its sprites from a folder stored locally while pokeget get's its sprites from the pokeget github repo.
-This allows pokeget's sprites to be renamed, fixed, redone, and tweaked without any update necessary from the user.
-
-pokemon-colorscripts has been tested on macOS though, and while pokeget-lite could work theoretically on macOS it has not been tested.
-
-When I googled about similar tools while I was developing the first version of pokeget I found pokemon-colorscripts and even used it as a source for a while.
-But I continued developing pokeget because I generally had some issues with it and I thought it could be improved.
-
-pokemon-colorscripts has issues with its sprites with some of them appearing blurry, as well as a lack of some other features.
-pokeget has already achieved feature parity with pokemon-colorscripts, and generally has more features.
-
-pokemon-colorscripts is still a really cool program, but pokeget does fix some of its issues.
-
-#### pokeget example
-
-![pokeget](https://github.com/talwat/pokeget/raw/main/examples/pokeget-and-pokemon-colorscripts/pokeget-moltres.png)
-
-#### pokemon-colorscripts example
-
-![pokeget](https://github.com/talwat/pokeget/raw/main/examples/pokeget-and-pokemon-colorscripts/pokemon-colorscripts-moltres.png)
+See [OTHER_PROJECTS.md](OTHER_PROJECTS.md#pokemon-colorscripts) for some info about this.
 
 ## Todo
 
@@ -164,4 +148,5 @@ pokemon-colorscripts is still a really cool program, but pokeget does fix some o
 
 ## Known issues
 
-During testing, some of the unicode symbols have displayed incorrectly, this is still being worked on.
+~~During testing, some of the unicode symbols have displayed incorrectly, this is still being worked on.~~
+This basically boils down to external factors such as your terminal emulator. This is not an issue with pokeget.
