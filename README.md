@@ -118,6 +118,8 @@ This helped a lot to be able to get pokemon with sprites instead of national dex
 
 - [crstian19](https://github.com/crstian19) Submitted pokeget to the AUR *Arch User Repository*.
 
+- [Vagahbond](https://github.com/Vagahbond) Made pokeget automatically know wether the user wanted to get a pokemon by ID or by name.
+
 ## Contributing & developing
 
 You can go to [DEVELOPING.md](DEVELOPING.md) for guidelines and developer documentation.
