@@ -373,6 +373,7 @@ getVanilla=false
 
   if [ $half == true ]; then
     pkmn="${pkmn}_half"
+  fi
 
   # Put together the final URL
 
