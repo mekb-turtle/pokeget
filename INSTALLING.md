@@ -39,7 +39,7 @@ You can use brew to install pokeget by doing these commands:
 
 ```bash
 brew tap talwat/pokeget https://github.com/talwat/pokeget
-brew install pokeget
+brew install --build-from-source pokeget
 ```
 
 Which will add the pokeget tap and then install pokeget.
