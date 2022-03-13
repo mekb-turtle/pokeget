@@ -9,6 +9,7 @@
     - [help](#help)
     - [update](#update)
     - [uninstall](#uninstall)
+    - [doctor](#doctor)
   - [Flags](#flags)
     - [-small](#-small)
     - [-big](#-big)
@@ -20,6 +21,8 @@
     - [-variant \<num>](#-variant-num)
     - [-random \<gen>](#-random-gen)
   - [Config file](#config-file)
+    - [getVanilla](#getvanilla)
+    - [cache](#cache)
 
 ## Basic Syntax
 
@@ -42,6 +45,10 @@ Automatically runs the update script to update pokeget. Use sudo if you did a sy
 ### uninstall
 
 This will run the uninstall script to remove pokeget. Use sudo if you did a system wide install.
+
+### doctor
+
+This will run the doctor script which will attempt to diagnose any issues.
 
 ## Flags
 
@@ -89,4 +96,14 @@ Random generations should be separated by ',' with no spaces.
 
 Pokeget generates a config file at `~/.config/pokeget/`.
 
-This config file has options that allow you to change defaults.
+This config file has options that allow you to change some default values, for example if you wanted pokemon to be shiny by default you could do that in the config file.
+
+### getVanilla
+
+This option in the config file makes pokeget get from a different folder on the sprites repo which has sprites from the official game. This option doesn't work with variants however, so keep that in mind.
+
+### cache
+
+This will cache new pokemon to `~/.cache/pokeget` which will allow for getting a pokemon you already got **much** faster.
+
+The only downside is that on pokemon that you haven't gotten a specific pokemon before, it will take a little longer as it needs to be wrote to the disk instead of only being stored in memory.

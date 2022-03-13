@@ -34,10 +34,20 @@ function check_darwin {
   if [[ $OSTYPE == *'darwin'* ]]; then
 
     # Print $1 as the message if using darwin.
-    echo "It appears you're using macOS (darwin), $1."
+    log "$RED" "It appears you're using macOS (darwin), $1."
     return 0
   fi
   return 1
+}
+
+function debug_log {
+  if [ "$debug" == true ]; then
+    log "$YELLOW" "$1"
+  fi
+}
+
+function log {
+  echo -e "$1[!]${RESET} $2"
 }
 
 # Check if the input was a command
@@ -47,14 +57,14 @@ case $1 in
 # No command
 
 "")
-  echo -e "${CYAN}[!]${RESET} Use ${BOLD}pokeget help${RESET} to see usage."
+  log "$CYAN" "Use ${BOLD}pokeget help${RESET} to see usage."
   exit 0
   ;;
 
 # Version command
 
 version)
-  echo -e "${CYAN}[!]${RESET} pokeget 1.4.3 ${BASH_SOURCE[0]}"
+  log "$CYAN" "pokeget 1.5 ${BASH_SOURCE[0]}"
   exit 0
   ;;
 
@@ -99,7 +109,7 @@ update)
   # Check for deb/rpm in order to prevent any issues.
 
   if check_for_deb || check_for_rpm || check_for_brew; then
-    echo -e "${RED}[!]${RESET} It looks like you installed pokeget with dpkg/rpm/brew, please update pokeget with them as well to avoid any issues."
+    log "$RED" "It looks like you installed pokeget with dpkg/rpm/brew, please update pokeget with them as well to avoid any issues."
     exit 1
   fi
 
@@ -117,7 +127,7 @@ update)
     sudo mv /tmp/pokeget "${BASH_SOURCE[0]}"
   fi
 
-  echo -e "${GREEN}[!]${RESET} Updated pokeget."
+  log "$GREEN" "Updated pokeget."
   exit 0
   ;;
 
@@ -127,7 +137,7 @@ uninstall)
   # Check for deb/rpm in order to prevent any issues.
 
   if check_for_deb || check_for_rpm || check_for_brew; then
-    echo -e "${RED}[!]${RESET} It looks like you installed pokeget with dpkg/rpm/brew, please uninstall pokeget with them as well to avoid any issues."
+    log "$RED" "It looks like you installed pokeget with dpkg/rpm/brew, please uninstall pokeget with them as well to avoid any issues."
     exit 1
   fi
 
@@ -139,6 +149,15 @@ uninstall)
 
 doctor)
   bash <(curl -s https://raw.githubusercontent.com/talwat/pokeget/main/scripts/doctor.sh)
+  exit 0
+  ;;
+
+# Clear cache command
+
+clear-cache)
+  log "$CYAN" "Clearing cache..."
+  rm -rf "$HOME/.cache/pokeget"
+  log "$GREEN" "Cache cleared."
   exit 0
   ;;
 
@@ -154,7 +173,8 @@ doctor)
   debug=false      # The default debug value.
   variant=""       # The default variant value.
   randomGens=()    # The default randomGens value.
-  getVanilla=false # The default getfromPokeAPI value.
+  getVanilla=false # The default getVanilla value.
+  cache=false      # The default cache value.
   partner=false    # The default partner value.
 
   # Non-configurable variables
@@ -181,9 +201,11 @@ back=false
 # The variant of the sprite. Determines megas, pokemon specific things like arceus, alolan forms, etc...
 variant=\"\"
 
-# EXPERIMENTAL
 # Use vanilla sprites, not pokemon reborn sprites. This will make shinies normal and small sprites look better, but it will remove back sprites and variants.
 getVanilla=false
+
+# Enable caching, this will cache the sprites for later use.
+cache=false
 " >"$HOME/.config/pokeget/pokeget.conf"
   fi
 
@@ -229,7 +251,7 @@ getVanilla=false
       partner=true
       ;;
     -*)
-      echo -e "${RED}[!]${RESET} Invalid flag"
+      log "$RED" "Invalid flag"
       exit
       ;;
     *)
@@ -273,11 +295,9 @@ getVanilla=false
 
     # Debug info
 
-    if [ $debug == true ]; then
-      echo -e "${YELLOW}[!]${RESET} randomGenNum: $randomGenNum"
-      echo -e "${YELLOW}[!]${RESET} finalRandomGen: $finalRandomGen"
-      echo -e "${YELLOW}[!]${RESET} randomGens: ${randomGens[0]}"
-    fi
+    debug_log "randomGenNum: $randomGenNum
+${YELLOW}[!]${RESET} finalRandomGen: $finalRandomGen
+${YELLOW}[!]${RESET} randomGens: ${randomGens[0]}"
 
     # Random values
 
@@ -359,10 +379,40 @@ getVanilla=false
 
   url="https://raw.githubusercontent.com/talwat/pokeget-sprites/main/${folderName}/${size}/${pkmnId}.txt"
 
-  rawPkmnId=$1
-  # Get final sprite using cURL
+  # Get final sprite using cURL or cache if caching is enabled
 
-  responseSolo=$(curl -s -L "${url}")
+  if [ $cache == true ]; then
+    path="$HOME/.cache/pokeget/sprites/${folderName}/${size}"
+    filePath="$path/${pkmnId}.txt"
+
+    # Debug info
+
+    debug_log "File Path: $filePath"
+    
+    # Make cache folder if it doesn't exist
+
+    mkdir -p "$path"
+
+    # Check if it's possible to get the sprite from the cache, if not, then get it from the internet and save it to the cache for next time
+
+    if [ ! -f "$filePath" ]; then
+      debug_log "Saving to cache"
+      curl -s -L "${url}" --output "$filePath"
+    fi
+
+    debug_log "Getting from cache"
+
+    # Set response
+
+    responseSolo=$(cat "$filePath")
+
+  else
+    # Debug info
+
+    debug_log "URL: $url"
+
+    responseSolo=$(curl -s -L "${url}")
+  fi
 
   # Put another sprite next to the first one if partner is true
 
@@ -372,16 +422,10 @@ getVanilla=false
     response=$responseSolo
   fi
 
-  # Debug info
-
-  if [ $debug == true ]; then
-    echo -e "${YELLOW}[!]${RESET} URL: $url"
-  fi
-
   # Print output or 404 message
 
-  if [[ $response == *"404"* ]]; then
-    echo -e "${RED}[!]${RESET} Pokemon could not be found (404 Error)$RESET"
+  if [[ $response == *"404"* ]] || [[ $response == *"No such file or directory"* ]]; then
+    log "$RED" "Pokemon could not be found (404 Error/cat Error)$RESET"
     exit 1
   else
     echo -e "$response$RESET"
