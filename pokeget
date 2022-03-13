@@ -64,7 +64,7 @@ case $1 in
 # Version command
 
 version)
-  log "$CYAN" "pokeget 1.5 ${BASH_SOURCE[0]}"
+  log "$CYAN" "pokeget 1.5.1 ${BASH_SOURCE[0]}"
   exit 0
   ;;
 
@@ -429,7 +429,7 @@ ${YELLOW}[!]${RESET} randomGens: ${randomGens[0]}"
   fi
 
   # Clean up if noMark is set to true
-  
+
   if [ $noMark == true ]; then
     command rm -rf "$HOME/.config/pokeget" >/dev/null 2>&1
     command rm -rf "$HOME/.cache/pokeget" >/dev/null 2>&1
