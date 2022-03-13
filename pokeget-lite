@@ -10,59 +10,59 @@ BOLD="\x1B[1m"
 RESET="\x1B[0m"
 
 if [ "$1" == "" ]; then
-  echo -e "${CYAN}[!]${RESET} Use ${BOLD}pokeget-lite [pokemon national dex id/pokemon name]${RESET}."
-  exit 0
+	echo -e "${CYAN}[!]${RESET} Use ${BOLD}pokeget-lite [pokemon national dex id/pokemon name]${RESET}."
+	exit 0
 
 else
-  rawId=$1
+	rawId=$1
 
-  # Check if the input is a national dex ID or a pokemon name
+	# Check if the input is a national dex ID or a pokemon name
 
-  if [[ $rawId =~ ^[0-9]+$ ]]; then
-    isPkmnName=false
-  else
-    isPkmnName=true
-  fi
+	if [[ $rawId =~ ^[0-9]+$ ]]; then
+		isPkmnName=false
+	else
+		isPkmnName=true
+	fi
 
-  # Parse the ID/Name
+	# Parse the ID/Name
 
-  if [ $isPkmnName == false ]; then
-    id=$rawId
-    length=${#id}
+	if [ $isPkmnName == false ]; then
+		id=$rawId
+		length=${#id}
 
-    # Loop until the pokemon ID's length is three. This makes '3' '003', '25' '025', etc...
+		# Loop until the pokemon ID's length is three. This makes '3' '003', '25' '025', etc...
 
-    while ((length < 3)); do
-      id=0$id
-      length=${#id}
-    done
-  else
-    id=$(echo "$rawId" | tr '[:upper:]' '[:lower:]')
-  fi
+		while ((length < 3)); do
+			id=0$id
+			length=${#id}
+		done
+	else
+		id=$(echo "$rawId" | tr '[:upper:]' '[:lower:]')
+	fi
 
-  folderName="pokemon_vanilla"
+	folderName="pokemon_vanilla"
 
-  # Append to folder name based on wether input was a pokemon name or ID
+	# Append to folder name based on wether input was a pokemon name or ID
 
-  if [ $isPkmnName == true ]; then
-    folderName="${folderName}_named"
-  fi
+	if [ $isPkmnName == true ]; then
+		folderName="${folderName}_named"
+	fi
 
-  # Put together the final URL
+	# Put together the final URL
 
-  url="https://raw.githubusercontent.com/talwat/pokeget-scripts/main/${folderName}/small/${id}.txt"
+	url="https://raw.githubusercontent.com/talwat/pokeget-scripts/main/${folderName}/small/${id}.txt"
 
-  # Get final sprite using cURL
+	# Get final sprite using cURL
 
-  r=$(curl -s -L "${url}")
+	r=$(curl -s -L "${url}")
 
-  # Print output or 404 message
+	# Print output or 404 message
 
-  if [[ $r == *"404"* ]]; then
-    echo -e "${RED}[!]${RESET} Pokemon could not be found (404 Error)$RESET"
-    exit 1
-  else
-    echo -e "$r$RESET"
-    exit 0
-  fi
+	if [[ $r == *"404"* ]]; then
+		echo -e "${RED}[!]${RESET} Pokemon could not be found (404 Error)$RESET"
+		exit 1
+	else
+		echo -e "$r$RESET"
+		exit 0
+	fi
 fi

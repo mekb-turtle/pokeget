@@ -22,6 +22,7 @@
         "notshiny",
         "paru",
         "pokeget",
+        "shellcheck",
         "shfmt",
         "sloc",
         "SRPM",
