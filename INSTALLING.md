@@ -16,14 +16,14 @@
 
 ## Packaging status
 
-| Packaging Status |
-| ---------------- |
+| Packaging Status                                                               |
+| ------------------------------------------------------------------------------ |
 | ![Install Commands](https://img.shields.io/badge/Install_Commands-1.5.1-green) |
-| ![AUR](https://img.shields.io/badge/AUR-1.5.1-green)
-| ![Homebrew](https://img.shields.io/badge/Homebrew-1.4.3-orange)
-| ![RPM](https://img.shields.io/badge/.rpm-1.4.3-orange)
-| ![DEB](https://img.shields.io/badge/.deb-1.4.3-orange)
-| ![Glacier](https://img.shields.io/badge/Glacier-1.4.3-orange)
+| ![AUR](https://img.shields.io/badge/AUR-1.5.1-green)                           |
+| ![Homebrew](https://img.shields.io/badge/Homebrew-1.4.3-orange)                |
+| ![RPM](https://img.shields.io/badge/.rpm-1.4.3-orange)                         |
+| ![DEB](https://img.shields.io/badge/.deb-1.4.3-orange)                         |
+| ![Glacier](https://img.shields.io/badge/Glacier-1.4.3-orange)                  |
 
 ## Arch linux & Arch linux derivatives *Manjaro, EndeavorOS, etc...*
 
