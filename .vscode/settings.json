@@ -9,6 +9,7 @@
         "colorscripts",
         "coreutils",
         "crstian",
+        "Distro",
         "distros",
         "dpkg",
         "endeavoros",
