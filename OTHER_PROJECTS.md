@@ -15,7 +15,7 @@
 pokeget is not a clone of [pokemon-colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts/), nor was inspired by it in the first place.
 
 The true main difference is that [pokemon-colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts/) gets its sprites from a folder stored locally while pokeget get's its sprites from the pokeget github repo.
-This allows pokeget's sprites to be renamed, fixed, redone, and tweaked without any update necessary from the user.
+This allows pokeget's sprites to be renamed, fixed, redone, and tweaked without any update necessary from the user. Due to this functionality, pokeget is slower by a factor of 7x.
 
 [pokemon-colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts/) has been tested on macOS though, and while pokeget-lite could work theoretically on macOS it has not been tested.
 
