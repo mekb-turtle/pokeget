@@ -37,4 +37,4 @@ What method did you use to install pokeget? Please link to a chapter from INSTAL
 
 ## Any other information
 
-Please note any other things that might have affected the bug, or are different about your enviorment.
+Please note any other things that might have affected the bug, or are different about your environment.
