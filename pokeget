@@ -367,9 +367,16 @@ getVanilla=false
     folderName="${folderName}_named"
   fi
 
+  pkmn="${pkmnId}"
+
+  # Append "_half" if using half flag
+
+  if [ $half == true ]; then
+    pkmn="${pkmn}_half"
+
   # Put together the final URL
 
-  url="https://raw.githubusercontent.com/talwat/pokeget-sprites/main/${folderName}/${size}/${pkmnId}.txt"
+  url="https://raw.githubusercontent.com/talwat/pokeget-sprites/main/${folderName}/${size}/${pkmn}.txt"
 
   rawPkmnId=$1
   # Get final sprite using cURL
