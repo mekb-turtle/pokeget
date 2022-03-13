@@ -43,7 +43,7 @@ As listed in [pokeshell](https://github.com/acxz/pokeshell)'s page, it has a lot
 
 pokeget fetches pre-converted sprites, which were converted with a python script, and displays them using a Unicode symbol and terminal colors.
 
-[pokeshell](https://github.com/acxz/pokeshell) fetched normal png/gif files and converts them **client-side** with a program called [timg](https://github.com/hzeller/timg).
+[pokeshell](https://github.com/acxz/pokeshell) fetches normal png/gif files and converts them **client-side** with a program called [timg](https://github.com/hzeller/timg).
 
 This offers a lot more flexibility with what you can do with the images, such as displaying animated sprites and resizing to the terminal. [pokeshell](https://github.com/acxz/pokeshell) also makes use of another program called [imagemagick](https://imagemagick.org/) to further edit images to display multiple pokemon at once.
 
