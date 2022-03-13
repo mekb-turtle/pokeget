@@ -43,21 +43,21 @@ As listed in [pokeshell](https://github.com/acxz/pokeshell)'s page, it has a lot
 
 pokeget fetches pre-converted sprites, which were converted with a python script, and displays them using a Unicode symbol and terminal colors.
 
-[pokeshell](https://github.com/acxz/pokeshell) fetched normal png files and converts them **client-side** with a program called [timg](https://github.com/hzeller/timg).
+[pokeshell](https://github.com/acxz/pokeshell) fetches normal png/gif files and converts them **client-side** with a program called [timg](https://github.com/hzeller/timg).
 
-This offers a lot more flexibility with what you can do with the images, and that's why [pokeshell](https://github.com/acxz/pokeshell) makes use of another program called [imagemagick](https://imagemagick.org/) to further edit images.
+This offers a lot more flexibility with what you can do with the images, such as displaying animated sprites and resizing to the terminal. [pokeshell](https://github.com/acxz/pokeshell) also makes use of another program called [imagemagick](https://imagemagick.org/) to further edit images to display multiple pokemon at once.
 
 These two tools allow a lot of image manipulation to be done super easily, which explains the features.
-The downside to this is that it is slower, much slower.
+The downside to this is that it is slower, much slower (~10x).
 
 This also adds a need for extra dependencies, and [pokeshell](https://github.com/acxz/pokeshell) also gets its pokemon sprites from external sources, while pokeget sticks to it's own repo.
 
-[pokeshell](https://github.com/acxz/pokeshell) is also much more portable, and on many distro's works completely out of the box.
+[pokeget](https://github.com/talwat/pokeget) is also much more portable, and on many distro's works completely out of the box.
 One of pokeget's main goals is to have as little dependencies as it can without compromising code quality.
 
-[pokeshell](https://github.com/acxz/pokeshell) also doesn't have any official macOS support, and while pokeget isn't fully compatible it still works and has been tested on macOS.
+[pokeshell](https://github.com/acxz/pokeshell) is compatible with macOS, while pokeget isn't fully compatible.
 
-Unlike [pokemon-colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts/) which doesn't have that many benefits over pokeget, [pokeshell](https://github.com/acxz/pokeshell) does have some benefits.
+Unlike [pokemon-colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts/) which doesn't have that many benefits over pokeget, [pokeshell](https://github.com/acxz/pokeshell) does have some benefits. You can see [here](https://github.com/acxz/pokeshell#similar-projects) for a feature comparison in tabular form.
 
 Also [pokeshell](https://github.com/acxz/pokeshell) has shell autocompletion, and pokeget doesn't.
 
